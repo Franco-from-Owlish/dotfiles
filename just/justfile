@@ -1,0 +1,6 @@
+default:
+    just -g --list
+
+# Start a new NeoVim session in the current directory with tmux split-window
+nvim-dev:
+    tmux new-session -A -snvim-dev \; split-window -v -l 20 \; select-pane -t 0 \; send-keys "nvim" C-m \;
