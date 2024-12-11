@@ -1,2 +1,5 @@
 # System files
 **.DS_Store
+
+# TheFuck
+thefuck/__pycache__
