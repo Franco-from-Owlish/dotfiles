@@ -17,15 +17,15 @@ export PATH="/opt/homebrew/opt/llvm/bin:$PATH"
 export CC=/opt/homebrew/opt/llvm/bin/clang
 export AR=/opt/homebrew/opt/llvm/bin/llvm-ar
 
+# Config home
+export XDG_CONFIG_HOME="$HOME/.config"
+
 # Angular CLI
 source <(ng completion script)
 
 # Startship
 eval "$(starship init zsh)"
 export STARSHIP_CONFIG=~/.config/starship/starship.toml
-
-# Config home
-export XDG_CONFIG_HOME="$HOME/.config"
 
 # TheFuck
 eval $(thefuck --alias)
