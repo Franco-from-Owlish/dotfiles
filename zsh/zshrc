@@ -31,7 +31,7 @@ export STARSHIP_CONFIG=~/.config/starship/starship.toml
 eval $(thefuck --alias)
 
 # Git cliff
-GIT_CLIFF_CONFIG="~/.config/git-cliff/cliff.toml"  # Config file path 
+export GIT_CLIFF_CONFIG="~/.config/git-cliff/cliff.toml"  # Config file path 
 
 # Draw.io
 alias drawio="/Applications/draw.io.app/Contents/MacOS/draw.io"
