@@ -38,3 +38,6 @@ alias drawio="/Applications/draw.io.app/Contents/MacOS/draw.io"
 
 # Terragrunt
 complete -o nospace -C /opt/homebrew/bin/terragrunt terragrunt
+
+# Just
+eval $(just --completions zsh)
