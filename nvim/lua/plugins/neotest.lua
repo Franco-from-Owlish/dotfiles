@@ -4,8 +4,8 @@ return {
   opts = function()
     return {
       adapters = {
-        require "neotest-golang",
-        require "neotest-rust",
+        -- require "neotest-golang",
+        -- require "neotest-rust",
         require "neotest-python",
       },
     }
