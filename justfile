@@ -8,7 +8,7 @@ default:
 # Generate Changelog
 [group('Chores')]
 generate-changelog:
-    git cliff -r . > CHANGELOG.md
+    git cliff -r .
 
 # Sort homebrew leaves
 [group('Chores')]
