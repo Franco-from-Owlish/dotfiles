@@ -19,3 +19,21 @@ sort-leaves:
 [group('Homebrew')]
 update-leaves:
     brew leaves > ${HOMEBREW_LEAVES}
+
+# Compare installed vs listed
+[group('Homebrew')]
+compare-leaves:
+    #!/usr/bin/env bash
+    diff --color -u homebrew/leaves.txt <(brew leaves)
+
+# See leaves not installed but listed
+[group('Homebrew')]
+installable-leaves:
+    #!/usr/bin/env bash
+    comm -23 homebrew/leaves.txt <(brew leaves)
+
+# See leaves installed but not listed
+[group('Homebrew')]
+unlisted-leaves:
+    #!/usr/bin/env bash
+    comm -13 homebrew/leaves.txt <(brew leaves)
