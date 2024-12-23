@@ -42,13 +42,13 @@ source <(ng completion script)
 
 # Startship
 eval "$(starship init zsh)"
-export STARSHIP_CONFIG=~/.config/starship/starship.toml
+export STARSHIP_CONFIG="$HOME/.config/starship/starship.toml"
 
 # TheFuck
 eval $(thefuck --alias)
 
 # Git cliff
-export GIT_CLIFF_CONFIG="~/.config/git-cliff/cliff.toml"  # Config file path 
+export GIT_CLIFF_CONFIG="$HOME/.config/git-cliff/cliff.toml"  # Config file path 
 
 # Draw.io
 alias drawio="/Applications/draw.io.app/Contents/MacOS/draw.io"
