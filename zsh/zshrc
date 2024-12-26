@@ -27,6 +27,10 @@ then
   compinit
 fi
 
+# Golang
+export GOPATH="$HOME/go"
+PATH="$GOPATH/bin:$PATH"
+
 # Rust builds
 export PATH="/opt/homebrew/opt/llvm/bin:$PATH"
 export CC=/opt/homebrew/opt/llvm/bin/clang
