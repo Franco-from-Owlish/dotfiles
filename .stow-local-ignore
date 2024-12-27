@@ -16,14 +16,15 @@ CVS
 ^/COPYING
 
 # Stow
-.stowrc
+\.stowrc
 
 # File system
-.DS_Store
+\.DS_Store
 
 # Directories
-homebrew
+^/homebrew
 
 # Helpers
-^/*.sh
-justfile
+^/install.sh
+^/pre-push.sh
+^/justfile
