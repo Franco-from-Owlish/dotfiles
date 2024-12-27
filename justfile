@@ -43,3 +43,8 @@ installable-leaves:
 unlisted-leaves:
     #!/usr/bin/env bash
     comm -13 homebrew/leaves.txt <(brew leaves)
+
+# Remove all symlinks
+[group('Stow')]
+unlink:
+    stow -D .
