@@ -10,6 +10,12 @@ default:
 generate-changelog:
     git cliff -r .
 
+
+# Add pre-push hook
+[group('Git')]
+add-hooks:
+    cp pre-push.sh .git/hooks/pre-push
+
 # Sort homebrew leaves
 [group('Chores')]
 sort-leaves:
