@@ -18,6 +18,7 @@ export XDG_CONFIG_HOME="$HOME/.config"
 # Homebrew
 export PATH="/opt/homebrew/bin:$PATH"
 export PATH="/opt/homebrew/sbin:$PATH"
+export HOMEBREW_CASK_OPTS="--appdir=$HOME/Applications"
 
 if type brew &>/dev/null
 then
