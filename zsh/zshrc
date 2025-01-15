@@ -2,6 +2,9 @@ autoload -U +X bashcompinit && bashcompinit
 autoload -Uz compinit
 compinit
 
+# Aliases
+alias cl=clear
+
 # Autocomplete
 source $(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 bindkey '^w' autosuggest-execute
