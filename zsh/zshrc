@@ -4,6 +4,8 @@ compinit
 
 # Aliases
 alias cl=clear
+alias ..="cd .."
+alias ...="cd ../.."
 
 # Autocomplete
 source $(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh
