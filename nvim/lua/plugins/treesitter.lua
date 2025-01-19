@@ -11,4 +11,8 @@ return {
       -- add more arguments for adding more treesitter parsers
     },
   },
+  highlight = {
+    enable = true,
+    disable = { "just" },
+  },
 }
