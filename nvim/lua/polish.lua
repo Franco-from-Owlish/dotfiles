@@ -15,4 +15,3 @@ vim.filetype.add {
 
 -- Vimtex configuration
 vim.g.vimtex_view_method = "skim"
-
