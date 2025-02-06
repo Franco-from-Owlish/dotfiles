@@ -11,7 +11,6 @@ return {
         "lua_ls",
         "ltex",
         "texlab",
-        -- add more arguments for adding more language servers
       },
     },
     settings = {
