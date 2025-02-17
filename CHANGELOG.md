@@ -57,6 +57,7 @@ All notable changes to this project will be documented in this file.
 - *(nvim)* Leetcode & golang test updates
 - *(nvim)* Add nvim.just
 - *(nvim)* Add community plugin render-markdown-nvim
+- *(nvim)* Add neotest vitest
 
 ### 🐛 Bug Fixes
 
@@ -65,6 +66,8 @@ All notable changes to this project will be documented in this file.
 - *(nvim)* Patch for neotest
 - Stow local ignore
 - *(ghostty)* Fix broken keymapping
+- *(nvim)* Use astrocore mappings for fuck my life
+- *(starship)* Picture icon path
 
 ### 💼 Other
 
@@ -95,6 +98,9 @@ All notable changes to this project will be documented in this file.
 - Update changelog
 - Update changelog
 - *(nvim)* Update lockfile
+- *(nvim)* Update lockfile
+- *(nvim)* Update lockfile
+- Update changelog
 - *(nvim)* Update lockfile
 - *(nvim)* Update lockfile
 
