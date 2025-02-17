@@ -38,7 +38,7 @@ read_only = " 󰌾"
 "~/Documents" = "󰈙"
 "~/Downloads" = " "
 "~/Music" = "󰝚 "
-"~/ictures" = " "
+"~/Pictures" = " "
 "~/Code" = "󰲋 "
 
 [docker_context]
