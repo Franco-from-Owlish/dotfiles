@@ -10,7 +10,6 @@ default:
 generate-changelog:
     git cliff -r .
 
-
 # Add pre-push hook
 [group('Git')]
 add-hooks:
