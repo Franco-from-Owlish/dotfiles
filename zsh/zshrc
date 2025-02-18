@@ -6,6 +6,7 @@ compinit
 alias cl=clear
 alias ..="cd .."
 alias ...="cd ../.."
+alias justg="just --global"
 
 # Autocomplete
 source $(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh
