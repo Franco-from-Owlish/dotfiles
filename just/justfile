@@ -26,3 +26,12 @@ shutdown:
     } else {
     systemctl poweroff
     }
+
+[group("Profiling")]
+time_zsh:
+    time zsh -i -c exit
+
+[group("Profiling")]
+profile_zsh:
+    #!/bin/sh
+    ZSH_PROFILE_STARTUP=1 zsh -i -c exit
