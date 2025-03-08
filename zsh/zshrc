@@ -6,10 +6,9 @@ compinit
 alias cl=clear
 alias ..="cd .."
 alias ...="cd ../.."
-alias justg="just --global"
+alias justg="just --global-justfile"
 
 # Autocomplete
-source $(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 bindkey '^w' autosuggest-execute
 bindkey '^e' autosuggest-accept
 bindkey '^u' autosuggest-toggle
@@ -29,9 +28,6 @@ export HOMEBREW_CASK_OPTS="--appdir=$HOME/Applications"
 if type brew &>/dev/null
 then
   FPATH="$(brew --prefix)/share/zsh/site-functions:${FPATH}"
-
-  autoload -Uz compinit
-  compinit
 fi
 
 # Golang
@@ -46,6 +42,7 @@ source <(rustup completions zsh cargo)
 source <(rustup completions zsh)
 
 # AWS
+alias awsp="source _awsp"
 complete -C '/usr/local/bin/aws_completer' aws
 
 # Angular CLI
@@ -84,3 +81,6 @@ source <(kubectl completion zsh)
 
 # Prettierd
 export PRETTIERD_DEFAULT_CONFIG="$HOME/.config/prettierd/default.json"
+
+# ZSH Autocomplete
+source $(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh
