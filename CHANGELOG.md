@@ -64,6 +64,9 @@ All notable changes to this project will be documented in this file.
 - *(zsh)* Add global justfile alias
 - *(stow)* Ignore bak files
 - *(just)* Add profiling and timing recipes for zsh
+- *(nvim)* Migrate to lazyvim
+- *(nvim)* Add lazynvim gitignore
+- *(bat)* Update theme
 
 ### 🐛 Bug Fixes
 
