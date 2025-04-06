@@ -89,7 +89,6 @@ All notable changes to this project will be documented in this file.
 - *(just)* Remove private recipes for system group
 - *(zsh)* Cleanup rc file
 - *(nvim)* Backup old nvim config
-- *(zsh)* Cleanup rc file
 
 ### ⚙️ Miscellaneous Tasks
 
@@ -122,6 +121,7 @@ All notable changes to this project will be documented in this file.
 - Update changelog
 - Format justfile
 - *(fastfetch)* Formatting
+- Update changelog
 - Update changelog
 - Update changelog
 
