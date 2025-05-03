@@ -17,7 +17,7 @@ bindkey '^k' up-line-or-search
 bindkey '^j' down-line-or-search
 
 # Enviroment
-export EDITOR=/opt/homebrew/bin/nvim
+export EDITOR="$(which nvim)"
 export XDG_CONFIG_HOME="$HOME/.config"
 
 # Homebrew
