@@ -10,22 +10,22 @@ nvim-dev:
 [group("System")]
 reboot:
     #!/bin/bash
-    if $(uname) == "Darwin" {
+    if [ "$(uname)" == "Darwin" ]; then
       osascript -e 'tell app "System Events" to restart'
-    } else {
+    else
       systemctl reboot
-    }
+    fi
 
 # Shut down computer
 [confirm("Are you sure you want to shut down")]
 [group("System")]
 shutdown:
     #!/bin/bash
-    if $(uname) == "Darwin" {
+    if [ "$(uname)" == "Darwin" ]; then
       osascript -e 'tell app "System Events" to shut down'
-    } else {
-    systemctl poweroff
-    }
+    else
+      systemctl poweroff
+    fi
 
 [group("Profiling")]
 time_zsh:
