@@ -35,3 +35,14 @@ time_zsh:
 profile_zsh:
     #!/bin/sh
     ZSH_PROFILE_STARTUP=1 zsh -i -c exit
+
+# cmatrix with colours
+[group("LOLs")]
+cmatrix:
+  cmatrix | lolcat
+
+# cowsay with colours
+[group("LOLs")]
+cowsay ARGS:
+  cowsay {{ ARGS }} | lolcat
+
