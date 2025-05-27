@@ -41,6 +41,9 @@ export AR=/opt/homebrew/opt/llvm/bin/llvm-ar
 source <(rustup completions zsh cargo)
 source <(rustup completions zsh)
 
+# AtlasGO
+eval $(atlas completion zsh)
+
 # AWS
 alias awsp="source _awsp"
 complete -C '/usr/local/bin/aws_completer' aws
