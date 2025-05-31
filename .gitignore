@@ -6,3 +6,6 @@ thefuck/__pycache__
 
 # Tmux
 tmux/plugins/
+
+# Nix
+nix/result
