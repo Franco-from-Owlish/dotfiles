@@ -30,6 +30,9 @@ then
   FPATH="$(brew --prefix)/share/zsh/site-functions:${FPATH}"
 fi
 
+# Nix 
+source "~/.nix-profile/etc/profile.d/hm-session-vars.sh"
+
 # Golang
 export GOPATH="$HOME/go"
 PATH="$GOPATH/bin:$PATH"
