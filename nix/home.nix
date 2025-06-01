@@ -18,8 +18,8 @@
   home.packages = [
     pkgs.atuin
     pkgs.bat
-    pkgs.bottom 
-    pkgs.btop 
+    pkgs.bottom
+    pkgs.btop
     pkgs.cowsay
     pgks.eza
     pkgs.fastfetch
@@ -58,7 +58,7 @@
   programs.home-manager.enable = true;
   home.sessionPath = [
     "/run/current-system/sw/bin"
-      "$HOME/.nix-profile/bin"
+    "$HOME/.nix-profile/bin"
   ];
   programs.zsh = {
     enable = true;
