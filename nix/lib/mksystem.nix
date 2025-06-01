@@ -2,11 +2,10 @@
 { nixpkgs, overlays, inputs }:
 
 name:
-{
-  system,
-  user,
-  darwin ? false,
-  wsl ? false
+{ system
+, user
+, darwin ? false
+, wsl ? false
 }:
 
 let
@@ -18,13 +17,14 @@ let
 
   # The config files for this system.
   machineConfig = ../machines/${name}.nix;
-  userOSConfig = ../users/${user}/${if darwin then "darwin" else "nixos" }.nix;
+  userOSConfig = ../users/${user}/${if darwin then "darwin" else "linux" }.nix;
   userHMConfig = ../users/${user}/home-manager.nix;
 
   # NixOS vs nix-darwin functionst
   systemFunc = if darwin then inputs.darwin.lib.darwinSystem else nixpkgs.lib.nixosSystem;
   home-manager = if darwin then inputs.home-manager.darwinModules else inputs.home-manager.nixosModules;
-in systemFunc rec {
+in
+systemFunc rec {
   inherit system;
 
   modules = [
@@ -37,14 +37,15 @@ in systemFunc rec {
     { nixpkgs.config.allowUnfree = true; }
 
     # Bring in WSL if this is a WSL build
-    (if isWSL then inputs.nixos-wsl.nixosModules.wsl else {})
+    (if isWSL then inputs.nixos-wsl.nixosModules.wsl else { })
 
     # Snapd on Linux
-    (if isLinux then inputs.nix-snapd.nixosModules.default else {})
+    (if isLinux then inputs.nix-snapd.nixosModules.default else { })
 
     machineConfig
     userOSConfig
-    home-manager.home-manager {
+    home-manager.home-manager
+    {
       home-manager.backupFileExtension = "backup";
       home-manager.useGlobalPkgs = true;
       home-manager.useUserPackages = true;
