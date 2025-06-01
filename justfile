@@ -50,10 +50,21 @@ unlink:
 
 # Update home manager.
 [group('Nix'), working-directory: "nix"]
-switch:
+nix-switch:
     #!/usr/bin/env bash
     set -euxo pipefail
     NIXNAME="apple-silicone"
     NIXPKGS_ALLOW_UNFREE=1
     nix build --impure --extra-experimental-features nix-command --extra-experimental-features flakes ".#darwinConfigurations.${NIXNAME}.system" --show-trace
     sudo ./result/sw/bin/darwin-rebuild switch --impure --flake "$(pwd)#${NIXNAME}"
+
+# Test home manager flake.
+[group('Nix'), working-directory: "nix"]
+nix-test:
+    #!/usr/bin/env bash
+    set -euxo pipefail
+    NIXNAME="apple-silicone"
+    NIXPKGS_ALLOW_UNFREE=1
+    nix build --impure --extra-experimental-features nix-command --extra-experimental-features flakes ".#darwinConfigurations.${NIXNAME}.system" --show-trace
+    sudo ./result/sw/bin/darwin-rebuild test --impure --flake "$(pwd)#${NIXNAME}"
+
