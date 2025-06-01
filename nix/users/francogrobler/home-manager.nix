@@ -3,28 +3,29 @@
 { config, lib, pkgs, ... }:
 
 let
-  sources = import ../../nix/sources.nix;
+  # sources = import ../../nix/sources.nix;
   isDarwin = pkgs.stdenv.isDarwin;
   isLinux = pkgs.stdenv.isLinux;
 
   shellAliases = {
-    cl = clear
+    cl = "clear";
     ".." = "cd ..";
     "..." = "cd ../..";
     justg = "just --global-justfile";
   } // (if isLinux then {
     pbcopy = "xclip";
     pbpaste = "xclip -o";
-  } else {});
+  } else { });
 
   # For our MANPAGER env var
   # https://github.com/sharkdp/bat/issues/1145
   manpager = (pkgs.writeShellScriptBin "manpager" (if isDarwin then ''
     sh -c 'col -bx | bat -l man -p'
-    '' else ''
+  '' else ''
     cat "$1" | col -bx | bat --language man --style plain
   ''));
-in {
+in
+{
   home.stateVersion = "25.05";
 
   xdg.enable = true;
@@ -38,11 +39,13 @@ in {
   # not a huge list.
   home.packages = [
     pkgs._1password-cli
+    pkgs.atuin
     pkgs.bat
-    pkgs.bottom 
-    pkgs.btop 
+    pkgs.bottom
+    pkgs.btop
     pkgs.cowsay
-    pgks.eza
+    pkgs.docker
+    pkgs.eza
     pkgs.fastfetch
     pkgs.fd
     pkgs.fzf
@@ -56,6 +59,7 @@ in {
     pkgs.neovim
     pkgs.nodejs
     pkgs.nushell
+    pkgs.podman
     pkgs.ripgrep
     pkgs.sentry-cli
     pkgs.starship
@@ -64,11 +68,13 @@ in {
     pkgs.yazi
     pkgs.zsh-autosuggestions
 
-    (pkgs.nerdfonts.override { fonts = [ "JetBrainsMono" ]; })
-  ] ++ (lib.optionals isDarwin [
-  ]) ++ (lib.optionals (isLinux) [
+    pkgs.nerd-fonts.jetbrains-mono
+    # ] ++ (lib.optionals isDarwin [
+    # ]) ++ (lib.optionals (isLinux) [
+  ] ++ (lib.optionals (isLinux) [
     pkgs.chromium
     pkgs.firefox
+    pkgs.ghostty
     pkgs.rofi
     pkgs.valgrind
     pkgs.zathura
@@ -88,12 +94,12 @@ in {
   } // (if isDarwin then {
     # See: https://github.com/NixOS/nixpkgs/issues/390751
     DISPLAY = "nixpkgs-390751";
-  } else {});
+  } else { });
 
-  home.file = {
-    ".gdbinit".source = ./gdbinit;
-    ".inputrc".source = ./inputrc;
-  };
+  # home.file = {
+  #   ".gdbinit".source = ./gdbinit;
+  #   ".inputrc".source = ./inputrc;
+  # };
 
   #---------------------------------------------------------------------
   # Programs
@@ -103,14 +109,18 @@ in {
 
   programs.bash = {
     enable = true;
-    shellOptions = [];
+    shellOptions = [ ];
     historyControl = [ "ignoredups" "ignorespace" ];
-    initExtra = builtins.readFile ./bashrc;
+    # initExtra = builtins.readFile ./bashrc;
     shellAliases = shellAliases;
   };
 
-  programs.direnv= {
+  programs.direnv = {
     enable = true;
+    enableBashIntegration = true;
+    enableNushellIntegration = true;
+    enableZshIntegration = true;
+    nix-direnv.enable = true;
   };
 
   programs.git = {
@@ -142,28 +152,8 @@ in {
     enable = true;
   };
 
-  programs.tmux = {
-    enable = true;
-    terminal = "xterm-256color";
-    secureSocket = false;
-    mouse = false;
-  };
-
   programs.alacritty = {
     enable = !isWSL;
-
-    settings = {
-      env.TERM = "xterm-256color";
-
-      key_bindings = [
-        { key = "K"; mods = "Command"; chars = "ClearHistory"; }
-        { key = "V"; mods = "Command"; action = "Paste"; }
-        { key = "C"; mods = "Command"; action = "Copy"; }
-        { key = "Key0"; mods = "Command"; action = "ResetFontSize"; }
-        { key = "Equals"; mods = "Command"; action = "IncreaseFontSize"; }
-        { key = "Subtract"; mods = "Command"; action = "DecreaseFontSize"; }
-      ];
-    };
   };
 
   programs.i3status = {
@@ -180,15 +170,6 @@ in {
       ipv6.enable = false;
       "wireless _first_".enable = false;
       "battery all".enable = false;
-    };
-  };
-
-  programs.atuin = {
-    enable = true;
-    enableNushellIntegration = true;
-    settings = {
-      show_tabs = false;
-      style = "compact";
     };
   };
 
