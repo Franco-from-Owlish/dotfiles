@@ -47,3 +47,13 @@ unlisted-leaves:
 [group('Stow')]
 unlink:
     stow -D .
+
+# Update home manager.
+[group('Nix'), working-directory: "nix"]
+switch:
+    #!/usr/bin/env bash
+    set -euxo pipefail
+    NIXNAME="apple-silicone"
+    NIXPKGS_ALLOW_UNFREE=1
+    nix build --impure --extra-experimental-features nix-command --extra-experimental-features flakes ".#darwinConfigurations.${NIXNAME}.system" --show-trace
+    sudo ./result/sw/bin/darwin-rebuild switch --impure --flake "$(pwd)#${NIXNAME}"
