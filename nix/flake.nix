@@ -16,28 +16,31 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    ghostty.url = "github:ghostty-org/ghostty";
   };
 
-  outputs = { self, nixpkgs, home-manager, darwin, ... }@inputs: let
-    # Overlays is the list of overlays we want to apply from flake inputs.
-    overlays = [
-      (final: prev: rec {
-        # gh CLI on stable has bugs.
-        gh = inputs.nixpkgs-unstable.legacyPackages.${prev.system}.gh;
+  outputs = { self, nixpkgs, home-manager, darwin, ghostty, ... }@inputs:
+    let
+      # Overlays is the list of overlays we want to apply from flake inputs.
+      overlays = [
+        (final: prev: rec {
+          # gh CLI on stable has bugs.
+          gh = inputs.nixpkgs-unstable.legacyPackages.${prev.system}.gh;
 
-        # Latest version of these
-        nushell = inputs.nixpkgs-unstable.legacyPackages.${prev.system}.nushell;
-      })
-    ];
+          # Latest version of these
+          nushell = inputs.nixpkgs-unstable.legacyPackages.${prev.system}.nushell;
+        })
+      ];
 
-    mkSystem = import ./lib/mksystem.nix {
-      inherit overlays nixpkgs inputs;
-    };
-  in {
+      mkSystem = import ./lib/mksystem.nix {
+        inherit overlays nixpkgs inputs;
+      };
+    in
+    {
       darwinConfigurations.apple-silicone = mkSystem "apple-silicone" {
-      system = "aarch64-darwin";
-      user   = "francogrobler";
-      darwin = true;
+        system = "aarch64-darwin";
+        user = "francogrobler";
+        darwin = true;
+      };
     };
-  };
 }
