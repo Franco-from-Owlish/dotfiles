@@ -5,6 +5,7 @@
     enable = true;
     casks = [
       "1password"
+      "adobe-acrobat-reader"
       "discord"
       "ghostty"
       "google-chrome"
