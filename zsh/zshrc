@@ -23,7 +23,6 @@ export XDG_CONFIG_HOME="$HOME/.config"
 # Homebrew
 export PATH="/opt/homebrew/bin:$PATH"
 export PATH="/opt/homebrew/sbin:$PATH"
-export HOMEBREW_CASK_OPTS="--appdir=$HOME/Applications"
 
 if type brew &>/dev/null
 then
@@ -39,17 +38,10 @@ export PATH="/opt/homebrew/opt/llvm/bin:$PATH"
 export CC=/opt/homebrew/opt/llvm/bin/clang
 export AR=/opt/homebrew/opt/llvm/bin/llvm-ar
 source <(rustup completions zsh cargo)
-source <(rustup completions zsh)
-
-# AtlasGO
-eval $(atlas completion zsh)
 
 # AWS
 alias awsp="source _awsp"
 complete -C '/usr/local/bin/aws_completer' aws
-
-# Angular CLI
-source <(ng completion script)
 
 # Startship
 eval "$(starship init zsh)"
@@ -86,4 +78,4 @@ source <(kubectl completion zsh)
 export PRETTIERD_DEFAULT_CONFIG="$HOME/.config/prettierd/default.json"
 
 # ZSH Autocomplete
-source $(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+source $(nix eval --raw nixpkgs#zsh-autosuggestions.outPath)/share/zsh-autosuggestions/zsh-autosuggestions.zsh
