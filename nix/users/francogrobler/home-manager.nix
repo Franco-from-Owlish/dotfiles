@@ -60,12 +60,16 @@ in
     pkgs.nodejs
     pkgs.nushell
     pkgs.podman
+    pkgs.podman-desktop
+    pkgs.podman-tui
     pkgs.ripgrep
     pkgs.sentry-cli
     pkgs.starship
+    pkgs.thefuck
     pkgs.tree
     pkgs.tmux
     pkgs.yazi
+    pkgs.zoxide
     pkgs.zsh-autosuggestions
 
     pkgs.nerd-fonts.jetbrains-mono
@@ -172,6 +176,19 @@ in
       "battery all".enable = false;
     };
   };
+
+  programs.zsh = {
+    enable = true;
+    enableCompletion = false;
+    shellInit = ''
+      # Nix
+      if [ -e '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh' ]; then
+        . '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh'
+      fi
+      # End Nix
+    '';
+  };
+
 
   services.gpg-agent = {
     enable = isLinux;
