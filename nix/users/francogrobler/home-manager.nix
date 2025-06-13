@@ -70,7 +70,6 @@ in
     pkgs.tmux
     pkgs.yazi
     pkgs.zoxide
-    pkgs.zsh-autosuggestions
 
     pkgs.nerd-fonts.jetbrains-mono
     # ] ++ (lib.optionals isDarwin [
@@ -179,8 +178,9 @@ in
 
   programs.zsh = {
     enable = true;
-    enableCompletion = false;
-    shellInit = ''
+    autosuggestion = { enable = true; };
+    defaultKeymap = "vicmd";
+    initContent = ''
       # Nix
       if [ -e '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh' ]; then
         . '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh'
