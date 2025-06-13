@@ -76,6 +76,3 @@ source <(kubectl completion zsh)
 
 # Prettierd
 export PRETTIERD_DEFAULT_CONFIG="$HOME/.config/prettierd/default.json"
-
-# ZSH Autocomplete
-source $(nix eval --raw nixpkgs#zsh-autosuggestions.outPath)/share/zsh-autosuggestions/zsh-autosuggestions.zsh
