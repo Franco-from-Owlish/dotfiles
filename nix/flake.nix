@@ -39,17 +39,17 @@
         inherit overlays nixpkgs inputs;
       };
 
-      user = "francogrobler";
+      userName = "francogrobler";
     in
     {
       homeConfigurations.x86_64-linux = mkConfig {
-        inherit user;
         system = "x86_64-linux";
+        user = userName;
       };
 
       darwinConfigurations.apple-silicone = mkSystem "apple-silicone" {
-        inherit user;
         system = "aarch64-darwin";
+        user = userName;
         darwin = true;
       };
     };
