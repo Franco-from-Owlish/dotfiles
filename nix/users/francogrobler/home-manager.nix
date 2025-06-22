@@ -12,6 +12,9 @@ let
     ".." = "cd ..";
     "..." = "cd ../..";
     justg = "just --global-justfile";
+    l = "eza -l --icons --git -a";
+    lt = "eza --tree --level=2 --long --icons --git";
+    ltree = "eza --tree --level=2  --icons --git";
   } // (if isLinux then {
     pbcopy = "xclip";
     pbpaste = "xclip -o";
@@ -39,10 +42,10 @@ in
   # not a huge list.
   home.packages = [
     pkgs._1password-cli
-    pkgs.atuin
     pkgs.bat
     pkgs.bottom
     pkgs.btop
+    pkgs.cmatrix
     pkgs.cowsay
     pkgs.docker
     pkgs.eza
@@ -56,15 +59,14 @@ in
     pkgs.jq
     pkgs.lazydocker
     pkgs.lazygit
+    pkgs.lolcat
     pkgs.neovim
     pkgs.nodejs
-    pkgs.nushell
     pkgs.podman
     pkgs.podman-desktop
     pkgs.podman-tui
     pkgs.ripgrep
     pkgs.sentry-cli
-    pkgs.starship
     pkgs.thefuck
     pkgs.tree
     pkgs.tmux
@@ -88,9 +90,9 @@ in
   #---------------------------------------------------------------------
 
   home.sessionVariables = {
-    LANG = "en_UK.UTF-8";
-    LC_CTYPE = "en_UK.UTF-8";
-    LC_ALL = "en_UK.UTF-8";
+    LANG = "en_GB.UTF-8";
+    LC_CTYPE = "en_GB.UTF-8";
+    LC_ALL = "en_GB.UTF-8";
     EDITOR = "nvim";
     PAGER = "less -FirSwX";
     MANPAGER = "${manpager}/bin/manpager";
@@ -99,16 +101,18 @@ in
     DISPLAY = "nixpkgs-390751";
   } else { });
 
-  # home.file = {
-  #   ".gdbinit".source = ./gdbinit;
-  #   ".inputrc".source = ./inputrc;
-  # };
-
   #---------------------------------------------------------------------
   # Programs
   #---------------------------------------------------------------------
 
   programs.gpg.enable = !isDarwin;
+
+  programs.atuin = {
+    enable = true;
+    enableBashIntegration = true;
+    enableNushellIntegration = true;
+    enableZshIntegration = true;
+  };
 
   programs.bash = {
     enable = true;
@@ -176,6 +180,18 @@ in
     };
   };
 
+  programs.nushell = {
+    enable = true;
+    shellAliases = shellAliases;
+  };
+
+  programs.starship = {
+    enable = true;
+    enableBashIntegration = true;
+    enableNushellIntegration = true;
+    enableZshIntegration = true;
+  };
+
   programs.zsh = {
     enable = true;
     autosuggestion = { enable = true; };
@@ -186,7 +202,14 @@ in
         . '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh'
       fi
       # End Nix
+
+      # Dotfiles
+      source "$HOME/.config/zsh/zshrc"
     '';
+    shellAliases = shellAliases;
+    syntaxHighlighting = {
+      enable = true;
+    };
   };
 
 
