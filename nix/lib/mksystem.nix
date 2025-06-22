@@ -1,4 +1,3 @@
-# This function creates a NixOS system based on setup 
 { nixpkgs, overlays, inputs }:
 
 name:
@@ -17,7 +16,7 @@ let
 
   # The config files for this system.
   machineConfig = ../machines/${name}.nix;
-  userOSConfig = ../users/${user}/${if darwin then "darwin" else "linux" }.nix;
+  userOSConfig = ../users/${user}/${if darwin then "darwin" else "nixos" }.nix;
   userHMConfig = ../users/${user}/home-manager.nix;
 
   # NixOS vs nix-darwin functionst
@@ -35,9 +34,6 @@ systemFunc rec {
 
     # Allow unfree packages.
     { nixpkgs.config.allowUnfree = true; }
-
-    # Bring in WSL if this is a WSL build
-    (if isWSL then inputs.nixos-wsl.nixosModules.wsl else { })
 
     # Snapd on Linux
     (if isLinux then inputs.nix-snapd.nixosModules.default else { })
