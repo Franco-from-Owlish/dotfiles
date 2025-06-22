@@ -22,7 +22,6 @@
     global = {
       autoUpdate = true;
       brewfile = true;
-
     };
     masApps = {
       "1Password for Safari" = 1569813296;
@@ -31,7 +30,7 @@
     onActivation = {
       autoUpdate = true;
       cleanup = "uninstall";
-      upgrade = true;
+      upgrade = false;
     };
   };
 
