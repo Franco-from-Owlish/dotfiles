@@ -42,6 +42,7 @@ in
   # not a huge list.
   home.packages = [
     pkgs._1password-cli
+    pkgs.alacritty
     pkgs.bat
     pkgs.bottom
     pkgs.btop
@@ -105,113 +106,24 @@ in
   # Programs
   #---------------------------------------------------------------------
 
+  import = with programs; [
+    "./programs/clis.nix"
+    "./programs/shells.nix"
+    "./programs/vsc.nix"
+  ] ++ (lib.optionals (isLinux) [
+    "./programs/linux.nix"
+  ]);
+
   programs.gpg.enable = !isDarwin;
-
-  programs.atuin = {
-    enable = true;
-    enableBashIntegration = true;
-    enableNushellIntegration = true;
-    enableZshIntegration = true;
-  };
-
-  programs.bash = {
-    enable = true;
-    shellOptions = [ ];
-    historyControl = [ "ignoredups" "ignorespace" ];
-    # initExtra = builtins.readFile ./bashrc;
-    shellAliases = shellAliases;
-  };
-
-  programs.direnv = {
-    enable = true;
-    enableBashIntegration = true;
-    enableNushellIntegration = true;
-    enableZshIntegration = true;
-    nix-direnv.enable = true;
-  };
-
-  programs.git = {
-    enable = true;
-    userName = "Franco Grobler";
-    userEmail = "franco@grobler.fyi";
-    aliases = {
-      cleanup = "!git branch --merged | grep  -v '\\*\\|master\\|develop' | xargs -n 1 -r git branch -d";
-      prettylog = "log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(r) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative";
-      root = "rev-parse --show-toplevel";
-    };
-    extraConfig = {
-      branch.autosetuprebase = "always";
-      color.ui = true;
-      core.askPass = ""; # needs to be empty to use terminal for ask pass
-      credential.helper = "store"; # want to make this more secure
-      github.user = "franco-from-gcc";
-      push.default = "tracking";
-      init.defaultBranch = "main";
-    };
-  };
 
   programs.go = {
     enable = true;
     goPath = "$HOME/.go";
   };
 
-  programs.jujutsu = {
-    enable = true;
-  };
-
-  programs.alacritty = {
-    enable = !isWSL;
-  };
-
-  programs.i3status = {
-    enable = isLinux;
-
-    general = {
-      colors = true;
-      color_good = "#8C9440";
-      color_bad = "#A54242";
-      color_degraded = "#DE935F";
-    };
-
-    modules = {
-      ipv6.enable = false;
-      "wireless _first_".enable = false;
-      "battery all".enable = false;
-    };
-  };
-
-  programs.nushell = {
-    enable = true;
-    shellAliases = shellAliases;
-  };
-
-  programs.starship = {
-    enable = true;
-    enableBashIntegration = true;
-    enableNushellIntegration = true;
-    enableZshIntegration = true;
-  };
-
-  programs.zsh = {
-    enable = true;
-    autosuggestion = { enable = true; };
-    defaultKeymap = "vicmd";
-    initContent = ''
-      # Nix
-      if [ -e '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh' ]; then
-        . '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh'
-      fi
-      # End Nix
-
-      # Dotfiles
-      source "$HOME/.config/zsh/zshrc"
-    '';
-    shellAliases = shellAliases;
-    syntaxHighlighting = {
-      enable = true;
-    };
-  };
-
+  #---------------------------------------------------------------------
+  # Services
+  #---------------------------------------------------------------------
 
   services.gpg-agent = {
     enable = isLinux;
