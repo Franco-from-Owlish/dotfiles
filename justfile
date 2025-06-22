@@ -55,7 +55,7 @@ nix-switch:
     set -euxo pipefail
     NIXNAME="apple-silicone"
     NIXPKGS_ALLOW_UNFREE=1
-    nix build --impure --extra-experimental-features nix-command --extra-experimental-features flakes ".#darwinConfigurations.${NIXNAME}.system" --show-trace
+    nix build --impure --extra-experimental-features nix-command --extra-experimental-features flakes ".#darwinConfigurations.${NIXNAME}.system"
     sudo ./result/sw/bin/darwin-rebuild switch --impure --flake "$(pwd)#${NIXNAME}"
 
 # Test home manager flake.
