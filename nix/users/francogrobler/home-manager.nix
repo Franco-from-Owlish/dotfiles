@@ -91,8 +91,8 @@ in
 
   home.sessionVariables = {
     LANG = "en_GB.UTF-8";
-    LC_CTYPE = "en_GB.UTF-8";
-    LC_ALL = "en_GB.UTF-8";
+    LC_CTYPE = "en_ZA.UTF-8";
+    LC_ALL = "en_ZA.UTF-8";
     EDITOR = "nvim";
     PAGER = "less -FirSwX";
     MANPAGER = "${manpager}/bin/manpager";
