@@ -27,6 +27,18 @@ let
   '' else ''
     cat "$1" | col -bx | bat --language man --style plain
   ''));
+
+  currentDir = builtins.path { path = ./.; };
+
+  linuxPrograms = lib.optionals (isLinux) [
+    (import "${currentDir}/programs/i3.nix")
+  ];
+
+  globalPrograms = [
+    (import "${currentDir}/programs/clis.nix")
+    (import "${currentDir}/programs/shells.nix" { inherit shellAliases; })
+    (import "${currentDir}/programs/vsc.nix")
+  ] ++ linuxPrograms;
 in
 {
   home.stateVersion = "25.05";
@@ -106,13 +118,7 @@ in
   # Programs
   #---------------------------------------------------------------------
 
-  import = with programs; [
-    "./programs/clis.nix"
-    "./programs/shells.nix"
-    "./programs/vsc.nix"
-  ] ++ (lib.optionals (isLinux) [
-    "./programs/linux.nix"
-  ]);
+  imports = globalPrograms;
 
   programs.gpg.enable = !isDarwin;
 
