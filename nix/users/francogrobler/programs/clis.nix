@@ -7,7 +7,7 @@
   };
 
   programs.carapace = {
-    enbale = true;
+    enable = true;
     enableBashIntegration = true;
     enableNushellIntegration = true;
     enableZshIntegration = true;
