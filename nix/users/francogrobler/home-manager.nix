@@ -38,7 +38,7 @@ let
     (import "${currentDir}/programs/clis.nix")
     (import "${currentDir}/programs/shells.nix" { inherit shellAliases; })
     (import "${currentDir}/programs/vsc.nix")
-  ] ++ linuxPrograms;
+  ] + linuxPrograms;
 in
 {
   home.stateVersion = "25.05";
@@ -87,12 +87,10 @@ in
     pkgs.zoxide
 
     pkgs.nerd-fonts.jetbrains-mono
-    # ] ++ (lib.optionals isDarwin [
-    # ]) ++ (lib.optionals (isLinux) [
   ] ++ (lib.optionals (isLinux) [
     pkgs.chromium
     pkgs.firefox
-    pkgs.ghostty
+    pkgs.ghostty # macos installer is broken
     pkgs.rofi
     pkgs.valgrind
     pkgs.zathura
@@ -103,7 +101,7 @@ in
   #---------------------------------------------------------------------
 
   home.sessionVariables = {
-    LANG = "en_GB.UTF-8";
+    LANG = "en_ZA.UTF-8";
     LC_CTYPE = "en_ZA.UTF-8";
     LC_ALL = "en_ZA.UTF-8";
     EDITOR = "nvim";
