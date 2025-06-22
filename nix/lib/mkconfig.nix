@@ -25,9 +25,9 @@ home-manager.lib.homeManagerConfiguration {
     }
 
     (import ../users/${user}/home-manager.nix {
-      isWSL = false;
       inherit inputs;
       pkgs = nixpkgs.legacyPackages.${system};
+      isWSL = false;
     })
   ];
 }
