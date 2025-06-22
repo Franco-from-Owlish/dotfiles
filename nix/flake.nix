@@ -35,11 +35,21 @@
       mkSystem = import ./lib/mksystem.nix {
         inherit overlays nixpkgs inputs;
       };
+      mkConfig = import ./lib/mkconfig.nix {
+        inherit overlays nixpkgs inputs;
+      };
+
+      user = "francogrobler";
     in
     {
+      homeConfigurations.x86_64-linux = mkConfig {
+        inherit user;
+        system = "x86_64-linux";
+      };
+
       darwinConfigurations.apple-silicone = mkSystem "apple-silicone" {
+        inherit user;
         system = "aarch64-darwin";
-        user = "francogrobler";
         darwin = true;
       };
     };
