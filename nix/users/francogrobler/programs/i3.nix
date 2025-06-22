@@ -15,5 +15,4 @@
       "battery all".enable = false;
     };
   };
-
 }
