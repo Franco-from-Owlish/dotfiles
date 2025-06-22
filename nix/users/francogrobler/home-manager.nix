@@ -140,7 +140,7 @@ in
     maxCacheTtl = 31536000;
   };
 
-  xresources.extraConfig = builtins.readFile ./Xresources;
+  xresources.extraConfig = builtins.readFile ./config/Xresources;
 
   # Make cursor not tiny on HiDPI screens
   home.pointerCursor = lib.mkIf (isLinux && !isWSL) {
