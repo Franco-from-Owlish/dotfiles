@@ -7,6 +7,7 @@
     casks = [
       "1password"
       "adobe-acrobat-reader"
+      "balenaetcher"
       "discord"
       "ghostty"
       "google-chrome"
@@ -15,7 +16,7 @@
       "skim"
     ];
     caskArgs = {
-      appdir = "$HOME/Applications";
+      appdir = "~/Applications";
       language = "en-ZA,en-GB";
       require_sha = true;
     };
