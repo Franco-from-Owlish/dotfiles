@@ -11,7 +11,6 @@
       "discord"
       "ghostty"
       "google-chrome"
-      "istat-menus"
       "slack"
       "skim"
     ];
