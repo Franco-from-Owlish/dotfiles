@@ -42,15 +42,20 @@
       userName = "francogrobler";
     in
     {
+      darwinConfigurations.apple-silicone = mkSystem "apple-silicone" {
+        system = "aarch64-darwin";
+        user = userName;
+        darwin = true;
+      };
+
       homeConfigurations.x86_64-linux = mkConfig {
         system = "x86_64-linux";
         user = userName;
       };
 
-      darwinConfigurations.apple-silicone = mkSystem "apple-silicone" {
-        system = "aarch64-darwin";
+      nixosConfigurations.x86_64-linux = mkSystem "x86_64-linux" rec {
+        system = "x86_64-linux";
         user = userName;
-        darwin = true;
       };
     };
 }
