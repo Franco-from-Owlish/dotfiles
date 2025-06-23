@@ -30,15 +30,11 @@ let
 
   currentDir = builtins.path { path = ./.; };
 
-  linuxPrograms = lib.optionals (isLinux) [
-    (import "${currentDir}/programs/i3.nix")
-  ];
-
   globalPrograms = [
     (import "${currentDir}/programs/clis.nix")
     (import "${currentDir}/programs/shells.nix" { inherit shellAliases; })
     (import "${currentDir}/programs/vsc.nix")
-  ] + linuxPrograms;
+  ];
 in
 {
   home.stateVersion = "25.05";
