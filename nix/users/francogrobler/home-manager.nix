@@ -33,6 +33,7 @@ let
   globalPrograms = [
     (import "${currentDir}/programs/clis.nix")
     (import "${currentDir}/programs/shells.nix" { inherit shellAliases; })
+    (import "${currentDir}/programs/utils.nix")
     (import "${currentDir}/programs/vsc.nix")
   ];
 in
