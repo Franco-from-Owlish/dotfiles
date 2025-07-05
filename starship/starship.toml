@@ -34,6 +34,9 @@ truncation_length = 3
 truncation_symbol = "…/"
 read_only = " 󰌾"
 
+[direnv]
+disabled = false
+
 [directory.substitutions]
 "~/Documents" = "󰈙"
 "~/Downloads" = " "
@@ -57,7 +60,7 @@ symbol = " "
 symbol = " "
 
 [git_branch]
-format =  '[$symbol$branch(:$remote_branch) ]($style)'
+format = '[$symbol$branch(:$remote_branch) ]($style)'
 symbol = " "
 
 [git_commit]
