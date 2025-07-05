@@ -72,10 +72,12 @@ in
     pkgs.lolcat
     pkgs.neovim
     pkgs.nodejs
+    pkgs.ookla-speedtest
     pkgs.podman
     pkgs.podman-desktop
     pkgs.podman-tui
     pkgs.ripgrep
+    pkgs.rustup
     pkgs.sentry-cli
     pkgs.thefuck
     pkgs.tree
