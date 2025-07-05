@@ -82,9 +82,10 @@
         TrackpadThreeFingerDrag = true;
       };
     };
+    # TODO: This fucks up external keyboards.
     keyboard = {
       enableKeyMapping = true;
-      swapLeftCtrlAndFn = true;
+      swapLeftCtrlAndFn = false;
     };
     startup.chime = false;
   };
