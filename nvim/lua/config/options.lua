@@ -5,6 +5,7 @@
 local opt = vim.opt
 
 opt.wrap = true -- Enable line wrap
+opt.spell = true -- Enable spell checking
 opt.mouse = ""
 
 local g = vim.g
