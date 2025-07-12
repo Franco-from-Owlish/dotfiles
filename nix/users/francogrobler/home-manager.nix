@@ -62,6 +62,7 @@ in
     pkgs.fastfetch
     pkgs.fd
     pkgs.fzf
+    pkgs.gemini-cli
     pkgs.gh
     pkgs.glow
     pkgs.htop
@@ -106,6 +107,8 @@ in
     EDITOR = "nvim";
     PAGER = "less -FirSwX";
     MANPAGER = "${manpager}/bin/manpager";
+
+    GEMINI_API_KEY = "op://Personal/Gemini CLI/credential";
   } // (if isDarwin then {
     # See: https://github.com/NixOS/nixpkgs/issues/390751
     DISPLAY = "nixpkgs-390751";
