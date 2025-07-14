@@ -21,14 +21,17 @@
 
   outputs = { self, nixpkgs, home-manager, darwin, ghostty, ... }@inputs:
     let
+      unstablePkgsFor = system: import inputs.nixpkgs-unstable {
+        inherit system;
+      };
       # Overlays is the list of overlays we want to apply from flake inputs.
       overlays = [
         (final: prev: rec {
-          # gh CLI on stable has bugs.
-          gh = inputs.nixpkgs-unstable.legacyPackages.${prev.system}.gh;
-
+          unstable = unstablePkgsFor prev.system;
           # Latest version of these
-          nushell = inputs.nixpkgs-unstable.legacyPackages.${prev.system}.nushell;
+          gemini-cli = unstable.gemini-cli;
+          gh = unstable.gh;
+          nushell = unstable.nushell;
         })
       ];
 
