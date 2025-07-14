@@ -3,7 +3,10 @@
 {
   homebrew = {
     enable = true;
-    brews = [ "mas" ];
+    brews = [
+      "gemini-cli"
+      "mas"
+    ];
     casks = [
       "1password"
       "adobe-acrobat-reader"

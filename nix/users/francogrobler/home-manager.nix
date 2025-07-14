@@ -62,7 +62,6 @@ in
     pkgs.fastfetch
     pkgs.fd
     pkgs.fzf
-    pkgs.gemini-cli
     pkgs.gh
     pkgs.glow
     pkgs.htop
@@ -90,6 +89,7 @@ in
   ] ++ (lib.optionals (isLinux) [
     pkgs.chromium
     pkgs.firefox
+    pkgs.gemini-cli
     pkgs.ghostty # macos installer is broken
     pkgs.rofi
     pkgs.valgrind
