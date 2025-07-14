@@ -88,7 +88,9 @@ in
     pkgs.zoxide
 
     pkgs.nerd-fonts.jetbrains-mono
-  ] ++ (lib.optionals (isLinux) [
+  ] ++ (lib.optionals (isDarwin) [
+    pkgs.stow
+  ]) ++ (lib.optionals (isLinux) [
     pkgs.chromium
     pkgs.firefox
     pkgs.gemini-cli
