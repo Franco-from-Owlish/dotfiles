@@ -1,4 +1,4 @@
-{ isWSL, inputs, ... }:
+{ isWSL, inputs, systemName, ... }:
 
 { config, lib, pkgs, ... }:
 
@@ -6,6 +6,8 @@ let
   # sources = import ../../nix/sources.nix;
   isDarwin = pkgs.stdenv.isDarwin;
   isLinux = pkgs.stdenv.isLinux;
+
+  osConfig = if isDarwin then "darwinConfigurations" else if isLinux then "nixosConfigurations" else "homeConfigurations";
 
   shellAliases = {
     cl = "clear";
@@ -33,7 +35,7 @@ let
   globalPrograms = [
     (import "${currentDir}/programs/clis.nix")
     (import "${currentDir}/programs/shells.nix" { inherit shellAliases; })
-    (import "${currentDir}/programs/utils.nix")
+    (import "${currentDir}/programs/utils.nix" { inherit osConfig systemName; })
     (import "${currentDir}/programs/vsc.nix")
   ];
 in
