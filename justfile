@@ -1,7 +1,5 @@
 set export := true
 
-HOMEBREW_LEAVES := "homebrew/leaves.txt"
-
 default:
     just --list
 
@@ -15,56 +13,31 @@ generate-changelog:
 add-hooks:
     cp pre-push.sh .git/hooks/pre-push
 
-# Sort homebrew leaves
-[group('Chores')]
-sort-leaves:
-    sort ${HOMEBREW_LEAVES} -o ${HOMEBREW_LEAVES}
-
-# Update homebrew leaves
-[group('Homebrew')]
-update-leaves:
-    brew leaves > ${HOMEBREW_LEAVES}
-
-# Compare installed vs listed
-[group('Homebrew')]
-compare-leaves:
-    #!/usr/bin/env bash
-    diff --color -u homebrew/leaves.txt <(brew leaves)
-
-# See leaves not installed but listed
-[group('Homebrew')]
-installable-leaves:
-    #!/usr/bin/env bash
-    comm -23 homebrew/leaves.txt <(brew leaves)
-
-# See leaves installed but not listed
-[group('Homebrew')]
-unlisted-leaves:
-    #!/usr/bin/env bash
-    comm -13 homebrew/leaves.txt <(brew leaves)
-
 # Remove all symlinks
 [group('Stow')]
 unlink:
     stow -D .
 
 # Update home manager.
-[group('Nix'), working-directory: "nix"]
+[group('Nix')]
+[working-directory("nix")]
 nix-switch:
     #!/usr/bin/env bash
-    set -euxo pipefail
-    NIXNAME="apple-silicone"
-    NIXPKGS_ALLOW_UNFREE=1
-    nix build --impure --extra-experimental-features nix-command --extra-experimental-features flakes ".#darwinConfigurations.${NIXNAME}.system"
-    sudo ./result/sw/bin/darwin-rebuild switch --impure --flake "$(pwd)#${NIXNAME}"
+    set -euo pipefail
+    . ../_scripts/set_nix_envs.sh
+    echo "Update nix config with: "
+    printenv | grep "^NIX[^_]"
+    nix build ".#${NIXCONFIG}.${NIXNAME}.system"
+    sudo ./result/sw/bin/darwin-rebuild switch --flake "$(pwd)#${NIXNAME}"
 
 # Test home manager flake.
-[group('Nix'), working-directory: "nix"]
+[group('Nix')]
+[working-directory("nix")]
 nix-test:
     #!/usr/bin/env bash
     set -euxo pipefail
-    NIXNAME="apple-silicone"
-    NIXPKGS_ALLOW_UNFREE=1
-    nix build --impure --extra-experimental-features nix-command --extra-experimental-features flakes ".#darwinConfigurations.${NIXNAME}.system" --show-trace
-    sudo ./result/sw/bin/darwin-rebuild test --impure --flake "$(pwd)#${NIXNAME}"
-
+    . ../_scripts/set_nix_envs.sh
+    echo "Test nix config with: "
+    printenv | grep "^NIX[^_]"
+    nix build ".#${NIXCONFIG}.${NIXNAME}.system"
+    sudo ./result/sw/bin/darwin-rebuild test --flake "$(pwd)#${NIXNAME}"
