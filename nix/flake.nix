@@ -16,6 +16,10 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    # Build a custom WSL installer
+    nixos-wsl.url = "github:nix-community/NixOS-WSL";
+    nixos-wsl.inputs.nixpkgs.follows = "nixpkgs";
+
     ghostty.url = "github:ghostty-org/ghostty";
   };
 
@@ -59,6 +63,12 @@
       nixosConfigurations.x86_64-linux = mkSystem "x86_64-linux" rec {
         system = "x86_64-linux";
         user = userName;
+      };
+
+      nixosConfigurations.wsl = mkSystem "wsl" rec {
+        system = "x86_64-linux";
+        user = userName;
+        wsl = true;
       };
     };
 }
