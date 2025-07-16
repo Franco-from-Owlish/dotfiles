@@ -1,6 +1,6 @@
-{
+{ isLinux, isWSL }: {
   programs.i3status = {
-    enable = true;
+    enable = isLinux && !isWSL;
 
     general = {
       colors = true;
