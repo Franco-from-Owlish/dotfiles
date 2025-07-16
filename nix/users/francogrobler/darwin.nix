@@ -12,6 +12,7 @@
       "adobe-acrobat-reader"
       "balenaetcher"
       "discord"
+      "freecad"
       "ghostty"
       "google-chrome"
       "slack"
