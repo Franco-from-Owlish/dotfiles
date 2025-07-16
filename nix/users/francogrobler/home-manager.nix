@@ -17,6 +17,8 @@ let
     l = "eza -l --icons --git -a";
     lt = "eza --tree --level=2 --long --icons --git";
     ltree = "eza --tree --level=2  --icons --git";
+
+    "gemini-cli" = "op run -- gemini";
   } // (if isLinux then {
     pbcopy = "xclip";
     pbpaste = "xclip -o";
@@ -34,6 +36,7 @@ let
 
   globalPrograms = [
     (import "${currentDir}/programs/clis.nix")
+    (import "${currentDir}/programs/i3.nix" { isLinux = isLinux; isWSL = isWSL; })
     (import "${currentDir}/programs/shells.nix" { inherit shellAliases; })
     (import "${currentDir}/programs/utils.nix" { inherit osConfig systemName; })
     (import "${currentDir}/programs/vsc.nix")
@@ -53,7 +56,6 @@ in
   # not a huge list.
   home.packages = [
     pkgs._1password-cli
-    pkgs.alacritty
     pkgs.bat
     pkgs.bottom
     pkgs.btop
@@ -76,11 +78,11 @@ in
     pkgs.nodejs
     pkgs.ookla-speedtest
     pkgs.podman
-    pkgs.podman-desktop
     pkgs.podman-tui
     pkgs.ripgrep
     pkgs.rustup
     pkgs.sentry-cli
+    pkgs.stow
     pkgs.thefuck
     pkgs.tree
     pkgs.tmux
@@ -88,12 +90,16 @@ in
     pkgs.zoxide
 
     pkgs.nerd-fonts.jetbrains-mono
-  ] ++ (lib.optionals (isDarwin) [
-    pkgs.stow
-  ]) ++ (lib.optionals (isLinux) [
+  ] ++ (lib.optionals (!isWSL) [
+    # GUI apps
+    pkgs.alacritty
+    pkgs.podman-desktop
+  ]) ++ (lib.optionals (!isDarwin) [
+    pkgs.gemini-cli # macos installer not availble
+  ]) ++ (lib.optionals (isLinux && !isWSL) [
     pkgs.chromium
     pkgs.firefox
-    pkgs.gemini-cli
+    pkgs.freecad-wayland
     pkgs.ghostty # macos installer is broken
     pkgs.rofi
     pkgs.valgrind
