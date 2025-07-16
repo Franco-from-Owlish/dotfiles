@@ -37,4 +37,5 @@
 
 ## Private folders
 ^/_*
+nix/*/results
 
