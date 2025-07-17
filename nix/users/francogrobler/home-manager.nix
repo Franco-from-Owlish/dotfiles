@@ -7,7 +7,7 @@ let
   isDarwin = pkgs.stdenv.isDarwin;
   isLinux = pkgs.stdenv.isLinux;
 
-  osConfig = if isDarwin then "darwinConfigurations" else if isLinux then "nixosConfigurations" else "homeConfigurations";
+  osConfig = if isDarwin then "darwinConfigurations" else if isLinux || isWSL then "nixosConfigurations" else "homeConfigurations";
 
   shellAliases = {
     cl = "clear";
@@ -37,6 +37,7 @@ let
   globalPrograms = [
     (import "${currentDir}/programs/clis.nix")
     (import "${currentDir}/programs/i3.nix" { isLinux = isLinux; isWSL = isWSL; })
+    (import "${currentDir}/programs/nvim.nix" { isNixOsLike = isLinux || isWSL; })
     (import "${currentDir}/programs/shells.nix" { inherit shellAliases; })
     (import "${currentDir}/programs/utils.nix" { inherit osConfig systemName; })
     (import "${currentDir}/programs/vsc.nix")
@@ -79,6 +80,7 @@ in
     pkgs.ookla-speedtest
     pkgs.podman
     pkgs.podman-tui
+    pkgs.python
     pkgs.ripgrep
     pkgs.rustup
     pkgs.sentry-cli
@@ -94,12 +96,11 @@ in
     # GUI apps
     pkgs.alacritty
     pkgs.podman-desktop
-  ]) ++ (lib.optionals (!isDarwin) [
-    pkgs.gemini-cli # macos installer not availble
   ]) ++ (lib.optionals (isLinux && !isWSL) [
     pkgs.chromium
     pkgs.firefox
     pkgs.freecad-wayland
+    pkgs.gemini-cli # macos & wsl installer not availble
     pkgs.ghostty # macos installer is broken
     pkgs.rofi
     pkgs.valgrind
@@ -122,7 +123,9 @@ in
   } // (if isDarwin then {
     # See: https://github.com/NixOS/nixpkgs/issues/390751
     DISPLAY = "nixpkgs-390751";
-  } else { });
+  } else {
+      NIX_LD="$HOME/.local/share/nvim"
+    });
 
   #---------------------------------------------------------------------
   # Programs
