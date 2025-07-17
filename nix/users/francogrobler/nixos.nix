@@ -11,4 +11,6 @@
     extraGroups = [ "docker" "lxd" "wheel" ];
     shell = pkgs.zsh;
   };
+
+  time.timeZone = "Africa/Johannesburg";
 }
