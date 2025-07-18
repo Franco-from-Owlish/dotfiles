@@ -1,20 +1,19 @@
-{ inputs, pkgs, ... }:
+{ pkgs, ... }:
 
 {
   homebrew = {
     enable = true;
-    brews = [
-      "gemini-cli"
-      "mas"
-    ];
+    brews = [ "gemini-cli" "mas" ];
     casks = [
       "1password"
       "adobe-acrobat-reader"
+      "alacritty"
       "balenaetcher"
       "discord"
       "freecad"
       "ghostty"
       "google-chrome"
+      "podman-desktop"
       "slack"
       "skim"
     ];

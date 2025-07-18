@@ -7,7 +7,12 @@ let
   isDarwin = pkgs.stdenv.isDarwin;
   isLinux = pkgs.stdenv.isLinux;
 
-  osConfig = if isDarwin then "darwinConfigurations" else if isLinux || isWSL then "nixosConfigurations" else "homeConfigurations";
+  osConfig = if isDarwin then
+    "darwinConfigurations"
+  else if isLinux || isWSL then
+    "nixosConfigurations"
+  else
+    "homeConfigurations";
 
   shellAliases = {
     cl = "clear";
@@ -22,7 +27,8 @@ let
   } // (if isLinux then {
     pbcopy = "xclip";
     pbpaste = "xclip -o";
-  } else { });
+  } else
+    { });
 
   # For our MANPAGER env var
   # https://github.com/sharkdp/bat/issues/1145
@@ -36,16 +42,16 @@ let
 
   globalPrograms = [
     (import "${currentDir}/programs/clis.nix")
-    (import "${currentDir}/programs/i3.nix" { isLinux = isLinux; isWSL = isWSL; })
+    (import "${currentDir}/programs/i3.nix" {
+      isLinux = isLinux;
+      isWSL = isWSL;
+    })
     (import "${currentDir}/programs/shells.nix" { inherit shellAliases; })
     (import "${currentDir}/programs/utils.nix" { inherit osConfig systemName; })
     (import "${currentDir}/programs/vsc.nix")
   ];
-  lspPackages = import "${currentDir}/programs/lsps.nix" {
-    inherit pkgs;
-  };
-in
-{
+  lspPackages = import "${currentDir}/programs/lsps.nix" { inherit pkgs; };
+in {
   home.stateVersion = "25.05";
 
   xdg.enable = true;
@@ -94,20 +100,21 @@ in
     pkgs.yazi
 
     pkgs.nerd-fonts.jetbrains-mono
-  ] ++ (lib.optionals (!isWSL) [
-    # GUI apps
-    pkgs.alacritty
-    pkgs.podman-desktop
-  ]) ++ (lib.optionals (isLinux && !isWSL) [
-    pkgs.chromium
-    pkgs.firefox
-    pkgs.freecad-wayland
-    pkgs.gemini-cli # macos & wsl installer not availble
-    pkgs.ghostty # macos installer is broken
-    pkgs.rofi
-    pkgs.valgrind
-    pkgs.zathura
-  ]) ++ lspPackages;
+  ] ++ (lib.optionals (isLinux || isWSL) [ pkgs.xclip ])
+    ++ (lib.optionals (isLinux && !isWSL) [
+      # MacOS & WSL installer not availble
+      pkgs.gemini-cli
+      # GUI apps
+      pkgs.alacritty
+      pkgs.chromium
+      pkgs.firefox
+      pkgs.freecad-wayland
+      pkgs.ghostty
+      pkgs.podman-desktop
+      pkgs.rofi
+      pkgs.valgrind
+      pkgs.zathura
+    ]) ++ lspPackages;
 
   #---------------------------------------------------------------------
   # Env vars and dotfiles
@@ -125,7 +132,8 @@ in
   } // (if isDarwin then {
     # See: https://github.com/NixOS/nixpkgs/issues/390751
     DISPLAY = "nixpkgs-390751";
-  } else {});
+  } else
+    { });
 
   #---------------------------------------------------------------------
   # Programs
