@@ -72,6 +72,7 @@ in
     pkgs.htop
     pkgs.just
     pkgs.jq
+    pkgs.kubectl
     pkgs.lazydocker
     pkgs.lazygit
     pkgs.lolcat
