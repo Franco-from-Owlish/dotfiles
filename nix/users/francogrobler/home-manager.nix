@@ -97,6 +97,7 @@ in {
     pkgs.thefuck
     pkgs.tree
     pkgs.tmux
+    pkgs.uv
     pkgs.yazi
 
     pkgs.nerd-fonts.jetbrains-mono
