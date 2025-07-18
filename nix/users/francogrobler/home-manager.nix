@@ -80,7 +80,7 @@ in
     pkgs.ookla-speedtest
     pkgs.podman
     pkgs.podman-tui
-    pkgs.python
+    pkgs.python3
     pkgs.ripgrep
     pkgs.rustup
     pkgs.sentry-cli
