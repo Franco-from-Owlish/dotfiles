@@ -6,18 +6,10 @@ bindkey '^L' vi-forward-word
 bindkey '^k' up-line-or-search
 bindkey '^j' down-line-or-search
 
-# Rust builds
-export PATH="/opt/homebrew/opt/llvm/bin:$PATH"
-export CC=/opt/homebrew/opt/llvm/bin/clang
-export AR=/opt/homebrew/opt/llvm/bin/llvm-ar
-source <(rustup completions zsh cargo)
-
 # AWS
 alias awsp="source _awsp"
-complete -C '/usr/local/bin/aws_completer' aws
 
 # Startship
-eval "$(starship init zsh)"
 export STARSHIP_CONFIG="$HOME/.config/starship/starship.toml"
 
 # TheFuck
@@ -35,9 +27,6 @@ eval $(just --completions zsh)
 # FZF
 source <(fzf --zsh)
 export FZF_DEFAULT_COMMAND='fd --type f --hidden --follow'
-
-# Zoxide
-eval "$(zoxide init zsh)"
 
 # Kubectl
 source <(kubectl completion zsh)
