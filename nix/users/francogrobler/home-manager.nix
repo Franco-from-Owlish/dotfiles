@@ -42,6 +42,9 @@ let
     (import "${currentDir}/programs/utils.nix" { inherit osConfig systemName; })
     (import "${currentDir}/programs/vsc.nix")
   ];
+  lspPackages = import "${currentDir}/programs/lsp.nix" {
+    inherit pkgs;
+  };
 in
 {
   home.stateVersion = "25.05";
@@ -105,7 +108,7 @@ in
     pkgs.rofi
     pkgs.valgrind
     pkgs.zathura
-  ]);
+  ]) ++ lspPackages;
 
   #---------------------------------------------------------------------
   # Env vars and dotfiles
