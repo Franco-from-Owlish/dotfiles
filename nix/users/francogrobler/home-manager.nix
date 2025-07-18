@@ -102,7 +102,7 @@ in {
     pkgs.nerd-fonts.jetbrains-mono
   ] ++ (lib.optionals (isLinux || isWSL) [ pkgs.xclip ])
     ++ (lib.optionals (isLinux && !isWSL) [
-      # MacOS & WSL installer not availble
+      # MacOS & WSL installer not available
       pkgs.gemini-cli
       # GUI apps
       pkgs.alacritty
