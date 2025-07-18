@@ -16,13 +16,10 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    # Build a custom WSL installer
-    nixos-wsl.url = "github:nix-community/NixOS-WSL";
-    nixos-wsl.inputs.nixpkgs.follows = "nixpkgs";
-
-    # Patch linker for Neovim
-    nix-ld.url = "github:Mic92/nix-ld";
-    nix-ld.inputs.nixpkgs.follows = "nixpkgs";
+    nixos-wsl = {
+      url = "github:nix-community/NixOS-WSL";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
     ghostty.url = "github:ghostty-org/ghostty";
   };
