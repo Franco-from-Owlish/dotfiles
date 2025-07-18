@@ -89,7 +89,6 @@ in
     pkgs.tree
     pkgs.tmux
     pkgs.yazi
-    pkgs.zoxide
 
     pkgs.nerd-fonts.jetbrains-mono
   ] ++ (lib.optionals (!isWSL) [
