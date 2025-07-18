@@ -1,4 +1,4 @@
-{ pkgs, currentSystemUser, config, ... }: {
+{ pkgs, currentSystemUser, ... }: {
   imports = [ ];
 
   wsl = {
