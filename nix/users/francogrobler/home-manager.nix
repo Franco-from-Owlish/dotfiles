@@ -1,18 +1,29 @@
-{ isWSL, inputs, systemName, ... }:
+{
+  isWSL,
+  inputs,
+  systemName,
+  ...
+}:
 
-{ config, lib, pkgs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 
 let
   # sources = import ../../nix/sources.nix;
   isDarwin = pkgs.stdenv.isDarwin;
   isLinux = pkgs.stdenv.isLinux;
 
-  osConfig = if isDarwin then
-    "darwinConfigurations"
-  else if isLinux || isWSL then
-    "nixosConfigurations"
-  else
-    "homeConfigurations";
+  osConfig =
+    if isDarwin then
+      "darwinConfigurations"
+    else if isLinux || isWSL then
+      "nixosConfigurations"
+    else
+      "homeConfigurations";
 
   shellAliases = {
     cl = "clear";
@@ -24,19 +35,31 @@ let
     ltree = "eza --tree --level=2  --icons --git";
 
     "gemini-cli" = "op run -- gemini";
-  } // (if isLinux then {
-    pbcopy = "xclip";
-    pbpaste = "xclip -o";
-  } else
-    { });
+  }
+  // (
+    if isLinux then
+      {
+        pbcopy = "xclip";
+        pbpaste = "xclip -o";
+      }
+    else
+      { }
+  );
 
   # For our MANPAGER env var
   # https://github.com/sharkdp/bat/issues/1145
-  manpager = (pkgs.writeShellScriptBin "manpager" (if isDarwin then ''
-    sh -c 'col -bx | bat -l man -p'
-  '' else ''
-    cat "$1" | col -bx | bat --language man --style plain
-  ''));
+  manpager = (
+    pkgs.writeShellScriptBin "manpager" (
+      if isDarwin then
+        ''
+          sh -c 'col -bx | bat -l man -p'
+        ''
+      else
+        ''
+          cat "$1" | col -bx | bat --language man --style plain
+        ''
+    )
+  );
 
   currentDir = builtins.path { path = ./.; };
 
@@ -48,10 +71,11 @@ let
     })
     (import "${currentDir}/programs/shells.nix" { inherit shellAliases; })
     (import "${currentDir}/programs/utils.nix" { inherit osConfig systemName; })
-    (import "${currentDir}/programs/vsc.nix")
+    (import "${currentDir}/programs/vsc.nix" { inherit isWSL; })
   ];
   lspPackages = import "${currentDir}/programs/lsps.nix" { inherit pkgs; };
-in {
+in
+{
   home.stateVersion = "25.05";
 
   xdg.enable = true;
@@ -70,6 +94,7 @@ in {
     pkgs.btop
     pkgs.cmatrix
     pkgs.cowsay
+    pkgs.dive
     pkgs.docker
     pkgs.eza
     pkgs.fastfetch
@@ -88,8 +113,9 @@ in {
     pkgs.nodejs
     pkgs.ookla-speedtest
     pkgs.podman
+    pkgs.podman-compose
     pkgs.podman-tui
-    pkgs.python3
+    pkgs.python313
     pkgs.ripgrep
     pkgs.rustup
     pkgs.sentry-cli
@@ -101,21 +127,27 @@ in {
     pkgs.yazi
 
     pkgs.nerd-fonts.jetbrains-mono
-  ] ++ (lib.optionals (isLinux || isWSL) [ pkgs.xclip ])
-    ++ (lib.optionals (isLinux && !isWSL) [
-      # MacOS & WSL installer not available
-      pkgs.gemini-cli
-      # GUI apps
-      pkgs.alacritty
-      pkgs.chromium
-      pkgs.firefox
-      pkgs.freecad-wayland
-      pkgs.ghostty
-      pkgs.podman-desktop
-      pkgs.rofi
-      pkgs.valgrind
-      pkgs.zathura
-    ]) ++ lspPackages;
+  ]
+  ++ (lib.optionals (isLinux || isWSL) [
+    pkgs.qemu
+    pkgs.virtiofsd
+    pkgs.xclip
+  ])
+  ++ (lib.optionals (isLinux && !isWSL) [
+    # MacOS & WSL installer not available
+    pkgs.gemini-cli
+    # GUI apps
+    pkgs.alacritty
+    pkgs.chromium
+    pkgs.firefox
+    pkgs.freecad-wayland
+    pkgs.ghostty
+    pkgs.podman-desktop
+    pkgs.rofi
+    pkgs.valgrind
+    pkgs.zathura
+  ])
+  ++ lspPackages;
 
   #---------------------------------------------------------------------
   # Env vars and dotfiles
@@ -130,11 +162,18 @@ in {
     MANPAGER = "${manpager}/bin/manpager";
 
     GEMINI_API_KEY = "op://Personal/Gemini CLI/credential";
-  } // (if isDarwin then {
-    # See: https://github.com/NixOS/nixpkgs/issues/390751
-    DISPLAY = "nixpkgs-390751";
-  } else
-    { });
+  }
+  // (
+    if isDarwin then
+      {
+        # See: https://github.com/NixOS/nixpkgs/issues/390751
+        DISPLAY = "nixpkgs-390751";
+      }
+    else
+      {
+        DOCKER_HOST = "unix:///run/user/1000/podman/podman-machine-default-api.sock";
+      }
+  );
 
   #---------------------------------------------------------------------
   # Programs
