@@ -1,13 +1,17 @@
-{ pkgs, currentSystemUser, ... }: {
+{ pkgs, currentSystemUser, ... }:
+{
   imports = [ ];
 
   wsl = {
     enable = true;
-    wslConf = {
-      automount = { root = "/mnt"; };
-    };
     defaultUser = currentSystemUser;
+    docker-desktop.enable = true;
     startMenuLaunchers = true;
+    wslConf = {
+      automount = {
+        root = "/mnt";
+      };
+    };
   };
 
   nix = {
