@@ -40,6 +40,11 @@ nix-test:
     nix build "nix#${NIXCONFIG}.${NIXNAME}.system"
     sudo ./result/sw/bin/darwin-rebuild test --flake "$(pwd)#${NIXNAME}"
 
+[group("Nix")]
+[working-directory("nix")]
+nix-flake-update:
+    nix flake update
+
 [group('Nix')]
 mason-packages:
     @nvim --headless -c ':luafile ./_scripts/list_lsps.lua' -c 'q' 2>&1
