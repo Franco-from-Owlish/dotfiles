@@ -14,7 +14,6 @@
   programs.zsh = {
     enable = true;
     autosuggestion = { enable = true; };
-    defaultKeymap = "vicmd";
     initContent = ''
       # Nix
       if [ -e '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh' ]; then
