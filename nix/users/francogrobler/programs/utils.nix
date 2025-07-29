@@ -1,4 +1,5 @@
-{ osConfig, systemName }: {
+{ osConfig, systemName }:
+{
   programs.nh = {
     enable = true;
     clean = {
