@@ -4,7 +4,9 @@
   homebrew = {
     enable = true;
     brews = [
+      "cocoapods"
       "gemini-cli"
+      "llvm"
       "mas"
     ];
     casks = [
@@ -12,6 +14,7 @@
       "adobe-acrobat-reader"
       "balenaetcher"
       "discord"
+      "flutter"
       "freecad"
       "ghostty"
       "google-chrome"
