@@ -93,6 +93,7 @@ in
     pkgs.nerd-fonts.jetbrains-mono
   ] ++ (lib.optionals (!isWSL && !isDarwin) [
     # GUI apps
+    pkgs._1password-gui
     pkgs.alacritty
     pkgs.podman-desktop
   ]) ++ (lib.optionals (!isDarwin) [
