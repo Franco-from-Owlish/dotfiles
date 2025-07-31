@@ -12,12 +12,14 @@
     casks = [
       "1password"
       "adobe-acrobat-reader"
+      "alacritty"
       "balenaetcher"
       "discord"
       "flutter"
       "freecad"
       "ghostty"
       "google-chrome"
+      "podman-desktop"
       "slack"
       "skim"
     ];

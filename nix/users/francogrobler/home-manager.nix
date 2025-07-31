@@ -86,11 +86,12 @@ in
     pkgs.thefuck
     pkgs.tree
     pkgs.tmux
+    pkgs.wget
     pkgs.yazi
     pkgs.zoxide
 
     pkgs.nerd-fonts.jetbrains-mono
-  ] ++ (lib.optionals (!isWSL) [
+  ] ++ (lib.optionals (!isWSL && !isDarwin) [
     # GUI apps
     pkgs.alacritty
     pkgs.podman-desktop
