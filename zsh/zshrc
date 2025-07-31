@@ -6,6 +6,13 @@ bindkey '^L' vi-forward-word
 bindkey '^k' up-line-or-search
 bindkey '^j' down-line-or-search
 
+# Homebrew
+if [[ $(uname) == 'Darwin' ]]; then
+    export PATH="/opt/homebrew/bin:$PATH"
+    export PATH="/opt/homebrew/sbin:$PATH"
+    eval "$(/opt/homebrew/bin/brew shellenv)"
+fi
+
 # Rust builds
 export PATH="/opt/homebrew/opt/llvm/bin:$PATH"
 export CC=/opt/homebrew/opt/llvm/bin/clang
