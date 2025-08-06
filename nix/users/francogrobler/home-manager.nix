@@ -37,7 +37,12 @@ let
     "gemini-cli" = "op run -- gemini";
   }
   // (
-    if isLinux then
+    if isWSL then
+      {
+        pbcopy = "win32yank.exe -i";
+        pbpaste = "win32yank.exe -o";
+      }
+    else if isLinux then
       {
         pbcopy = "xclip";
         pbpaste = "xclip -o";
