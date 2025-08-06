@@ -95,6 +95,7 @@ in
   # not a huge list.
   home.packages = [
     pkgs._1password-cli
+    pkgs.awscli2
     pkgs.bat
     pkgs.bottom
     pkgs.btop
@@ -131,6 +132,7 @@ in
     pkgs.tmux
     pkgs.uv
     pkgs.yazi
+    pkgs.yq
 
     pkgs.nerd-fonts.jetbrains-mono
   ]
