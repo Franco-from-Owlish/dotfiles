@@ -14,3 +14,10 @@ g.lazyvim_python_lsp = "basedpyright"
 
 -- VimTex
 g.vimtex_view_method = "skim"
+
+-- File types
+vim.filetype.add({
+  extension = {
+    arb = "json",
+  },
+})
