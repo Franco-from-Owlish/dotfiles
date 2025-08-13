@@ -116,8 +116,10 @@ in
     LANG = "en_ZA.UTF-8";
     LC_CTYPE = "en_ZA.UTF-8";
     LC_ALL = "en_ZA.UTF-8";
+
     EDITOR = "nvim";
     PAGER = "less -FirSwX";
+    PODMAN_COMPOSE_WARNING_LOGS = "false";
     MANPAGER = "${manpager}/bin/manpager";
 
     GEMINI_API_KEY = "op://Personal/Gemini CLI/credential";
