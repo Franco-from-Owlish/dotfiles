@@ -41,3 +41,9 @@ nix-test:
     printenv | grep "^NIX[^_]"
     nix build ".#${NIXCONFIG}.${NIXNAME}.system"
     sudo ./result/sw/bin/darwin-rebuild test --flake "$(pwd)#${NIXNAME}"
+
+# Update system flake lockfile.
+[group('Nix')]
+[working-directory("nix")]
+nix-update:
+    nix flake update
