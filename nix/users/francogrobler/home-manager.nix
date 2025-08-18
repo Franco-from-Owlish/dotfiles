@@ -78,6 +78,7 @@ in
     pkgs.nodejs
     pkgs.ookla-speedtest
     pkgs.podman
+    pkgs.podman-compose
     pkgs.podman-tui
     pkgs.ripgrep
     pkgs.rustup
