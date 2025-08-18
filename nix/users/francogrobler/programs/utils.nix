@@ -18,6 +18,11 @@ in
       "*" = {
         identityAgent = ''"${onePassPath}"'';
       };
+      "Bamboo- Norm" = {
+        host = "192.168.1.100:8006";
+        user = "root";
+        port = 22;
+      };
     };
   };
 }
