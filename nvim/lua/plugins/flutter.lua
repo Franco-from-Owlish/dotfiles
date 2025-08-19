@@ -1,6 +1,7 @@
 return {
   {
     "nvim-flutter/flutter-tools.nvim",
+    ft = { "dart" },
     lazy = false,
     dependencies = {
       "nvim-lua/plenary.nvim",
@@ -11,6 +12,7 @@ return {
   -- Update dependencies --
   {
     "akinsho/pubspec-assist.nvim",
+    ft = { "dart" },
     dependencies = { "plenary.nvim" },
     config = function()
       require("pubspec-assist").setup({})
