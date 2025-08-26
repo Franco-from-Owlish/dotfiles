@@ -36,6 +36,7 @@
           gemini-cli = unstable.gemini-cli;
           gh = unstable.gh;
           nushell = unstable.nushell;
+          uv = unstable.uv;
         })
       ];
 
