@@ -1,4 +1,5 @@
-{ pkgs, ... }: {
+{ pkgs, ... }:
+{
   # Add ~/.local/bin to PATH
   environment.localBinInPath = true;
 
@@ -23,7 +24,11 @@
   users.users.francogrobler = {
     isNormalUser = true;
     home = "/home/francogrobler";
-    extraGroups = [ "docker" "lxd" "wheel" ];
+    extraGroups = [
+      "docker"
+      "lxd"
+      "wheel"
+    ];
     shell = pkgs.zsh;
   };
 
@@ -32,7 +37,11 @@
   virtualisation = {
     containers = {
       enable = true;
-      containersConf = { settings = { compose_warning_logs = false; }; };
+      containersConf = {
+        settings = {
+          compose_warning_logs = false;
+        };
+      };
     };
     podman = {
       enable = true;
