@@ -2,6 +2,10 @@
 {
   imports = [ ];
 
+  environment.systemPackages = with pkgs; [
+    openssl
+  ];
+
   wsl = {
     enable = true;
     defaultUser = currentSystemUser;
