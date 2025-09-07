@@ -61,6 +61,7 @@ in
     pkgs.btop
     pkgs.cmatrix
     pkgs.cowsay
+    pkgs.devenv
     pkgs.docker
     pkgs.eza
     pkgs.fastfetch
