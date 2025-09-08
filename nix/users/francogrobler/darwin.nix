@@ -19,6 +19,7 @@
       "freecad"
       "ghostty"
       "google-chrome"
+      "keka"
       "podman-desktop"
       "slack"
       "skim"
