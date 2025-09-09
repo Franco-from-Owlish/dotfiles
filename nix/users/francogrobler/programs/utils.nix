@@ -23,6 +23,11 @@ in
         user = "root";
         port = 22;
       };
+      "OpenWRT" = {
+        host = "192.168.1.1";
+        user = "root";
+        port = 22;
+      };
     };
   };
 }
