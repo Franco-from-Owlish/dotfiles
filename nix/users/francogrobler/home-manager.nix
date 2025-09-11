@@ -107,6 +107,7 @@ in
     pkgs.freecad-wayland
     pkgs.ghostty # macos installer is broken
     pkgs.rofi
+    pkgs.vial
     pkgs.valgrind
     pkgs.zathura
   ]);

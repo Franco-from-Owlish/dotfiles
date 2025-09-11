@@ -23,6 +23,7 @@
       "podman-desktop"
       "slack"
       "skim"
+      "vial"
     ];
     caskArgs = {
       appdir = "~/Applications";
