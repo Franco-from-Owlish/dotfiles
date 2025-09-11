@@ -24,6 +24,7 @@
       "slack"
       "skim"
       "vial"
+      "qmk-toolbox"
     ];
     caskArgs = {
       appdir = "~/Applications";

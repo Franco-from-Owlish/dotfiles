@@ -81,6 +81,7 @@ in
     pkgs.podman
     pkgs.podman-compose
     pkgs.podman-tui
+    pkgs.qmk
     pkgs.ripgrep
     pkgs.rustup
     pkgs.sentry-cli
