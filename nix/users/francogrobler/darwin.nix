@@ -38,6 +38,7 @@
     };
     masApps = {
       "1Password for Safari" = 1569813296;
+      Numbers = 409203825;
       Wireguard = 1451685025;
       Xcode = 497799835;
     };
