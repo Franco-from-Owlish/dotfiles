@@ -18,7 +18,7 @@ let
     lt = "eza --tree --level=2 --long --icons --git";
     ltree = "eza --tree --level=2  --icons --git";
 
-    "gemini-cli" = "op run -- gemini";
+    "gemini-cli" = "GEMINI_API_KEY=$(op read $GEMINI_API_KEY) gemini";
   } // (if isLinux then {
     pbcopy = "xclip";
     pbpaste = "xclip -o";
