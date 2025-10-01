@@ -33,7 +33,7 @@
       require_sha = true;
     };
     global = {
-      autoUpdate = true;
+      autoUpdate = false;
       brewfile = true;
     };
     masApps = {
@@ -44,9 +44,9 @@
       Xcode = 497799835;
     };
     onActivation = {
-      autoUpdate = true;
+      autoUpdate = false;
       cleanup = "uninstall";
-      upgrade = false;
+      upgrade = true;
     };
   };
 
