@@ -46,4 +46,5 @@ nix-test:
 [group('Nix')]
 [working-directory("nix")]
 nix-update:
+    brew update
     nix flake update
