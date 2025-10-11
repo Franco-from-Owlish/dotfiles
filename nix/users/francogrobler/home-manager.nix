@@ -70,6 +70,7 @@ in
     pkgs.gh
     pkgs.glow
     pkgs.htop
+    pkgs.jaq
     pkgs.just
     pkgs.jq
     pkgs.lazydocker
@@ -92,6 +93,7 @@ in
     pkgs.tmux
     pkgs.wget
     pkgs.yazi
+    pkgs.yq
     pkgs.zoxide
 
     pkgs.nerd-fonts.jetbrains-mono
