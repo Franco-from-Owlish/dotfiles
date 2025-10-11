@@ -8,20 +8,22 @@ bindkey '^j' down-line-or-search
 
 # Homebrew
 if [[ $(uname) == 'Darwin' ]]; then
+  # Homebrew
     export PATH="/opt/homebrew/bin:$PATH"
     export PATH="/opt/homebrew/sbin:$PATH"
     eval "$(/opt/homebrew/bin/brew shellenv)"
+
+    # Draw.io cli
+    alias drawio="/Applications/draw.io.app/Contents/MacOS/draw.io"
 fi
 
 # Rust builds
 export PATH="/opt/homebrew/opt/llvm/bin:$PATH"
 export CC=/opt/homebrew/opt/llvm/bin/clang
 export AR=/opt/homebrew/opt/llvm/bin/llvm-ar
-source <(rustup completions zsh cargo)
 
 # AWS
 alias awsp="source _awsp"
-complete -C '/usr/local/bin/aws_completer' aws
 
 # Startship
 eval "$(starship init zsh)"
@@ -33,21 +35,8 @@ eval $(thefuck --alias)
 # Git cliff
 export GIT_CLIFF_CONFIG="$HOME/.config/git-cliff/cliff.toml"
 
-# Draw.io
-alias drawio="/Applications/draw.io.app/Contents/MacOS/draw.io"
-
-# Just
-eval $(just --completions zsh)
-
 # FZF
-source <(fzf --zsh)
 export FZF_DEFAULT_COMMAND='fd --type f --hidden --follow'
-
-# Zoxide
-eval "$(zoxide init zsh)"
-
-# Kubectl
-source <(kubectl completion zsh)
 
 # Prettierd
 export PRETTIERD_DEFAULT_CONFIG="$HOME/.config/prettierd/default.json"
