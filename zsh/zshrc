@@ -12,9 +12,6 @@ if [[ $(uname) == 'Darwin' ]]; then
     export PATH="/opt/homebrew/bin:$PATH"
     export PATH="/opt/homebrew/sbin:$PATH"
     eval "$(/opt/homebrew/bin/brew shellenv)"
-
-    # Draw.io cli
-    alias drawio="/Applications/draw.io.app/Contents/MacOS/draw.io"
 fi
 
 # Rust builds
