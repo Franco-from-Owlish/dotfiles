@@ -20,6 +20,7 @@
       "freecad"
       "ghostty"
       "google-chrome"
+      "inkscape"
       "keka"
       "podman-desktop"
       "slack"

@@ -118,6 +118,7 @@ in
     pkgs.nodejs
     pkgs.nixfmt-rfc-style
     pkgs.ookla-speedtest
+    pkgs.opencode
     pkgs.podman
     pkgs.podman-compose
     pkgs.podman-tui
