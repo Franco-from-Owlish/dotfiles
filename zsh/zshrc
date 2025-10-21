@@ -6,12 +6,16 @@ bindkey '^L' vi-forward-word
 bindkey '^k' up-line-or-search
 bindkey '^j' down-line-or-search
 
-# Homebrew
 if [[ $(uname) == 'Darwin' ]]; then
-  # Homebrew
-    export PATH="/opt/homebrew/bin:$PATH"
-    export PATH="/opt/homebrew/sbin:$PATH"
-    eval "$(/opt/homebrew/bin/brew shellenv)"
+	# Homebrew
+	export PATH="/opt/homebrew/bin:$PATH"
+	export PATH="/opt/homebrew/sbin:$PATH"
+	eval "$(/opt/homebrew/bin/brew shellenv)"
+
+	# NVM
+	export NVM_DIR="$HOME/.nvm"
+	[ -s "/opt/homebrew/opt/nvm/nvm.sh" ] && \. "/opt/homebrew/opt/nvm/nvm.sh"                                       # This loads nvm
+	[ -s "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm" ] && \. "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm" # This loads nvm bash_completion
 fi
 
 # Rust builds
