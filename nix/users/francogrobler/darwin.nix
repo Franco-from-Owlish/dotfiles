@@ -13,6 +13,7 @@
       "1password"
       "adobe-acrobat-reader"
       "alacritty"
+      "anydesk"
       "balenaetcher"
       "discord"
       "drawio"
@@ -31,7 +32,7 @@
     caskArgs = {
       appdir = "~/Applications";
       language = "en-ZA,en-GB";
-      # Initial chrome installs fails - no sha is specified for the cask recipe.
+      # Initial chrome, anydesk installs fails - no sha is specified for the cask recipe.
       require_sha = true;
     };
     global = {
