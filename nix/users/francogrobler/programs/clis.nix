@@ -28,6 +28,10 @@
     enableZshIntegration = true;
   };
 
+  programs.uv = {
+    enable = true;
+  };
+
   programs.zoxide = {
     enable = true;
     enableBashIntegration = true;

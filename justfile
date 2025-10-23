@@ -20,31 +20,33 @@ unlink:
 
 # Update home manager.
 [group('Nix')]
-[working-directory("nix")]
 nix-switch:
     #!/usr/bin/env bash
     set -euo pipefail
     . ../_scripts/set_nix_envs.sh
     echo "Update nix config with: "
     printenv | grep "^NIX[^_]"
-    nix build ".#${NIXCONFIG}.${NIXNAME}.system"
+    nix build "nix#${NIXCONFIG}.${NIXNAME}.system"
     sudo ./result/sw/bin/darwin-rebuild switch --flake "$(pwd)#${NIXNAME}"
 
 # Test home manager flake.
 [group('Nix')]
-[working-directory("nix")]
 nix-test:
     #!/usr/bin/env bash
     set -euxo pipefail
     . ../_scripts/set_nix_envs.sh
     echo "Test nix config with: "
     printenv | grep "^NIX[^_]"
-    nix build ".#${NIXCONFIG}.${NIXNAME}.system"
+    nix build "nix#${NIXCONFIG}.${NIXNAME}.system"
     sudo ./result/sw/bin/darwin-rebuild test --flake "$(pwd)#${NIXNAME}"
 
 # Update system flake lockfile.
 [group('Nix')]
 [working-directory("nix")]
 nix-update:
-    brew update
+    @if ( "$(uname -s)" = "Darwin"); then brew update; fi
     nix flake update
+
+[group('Nix')]
+mason-packages:
+    @nvim --headless -c ':luafile ./_scripts/list_lsps.lua' -c 'q' 2>&1

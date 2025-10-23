@@ -1,19 +1,30 @@
-{ lib, pkgs, ... }:
+{
+  lib,
+  pkgs,
+  isWSL,
+  ...
+}:
 let
   isDarwin = pkgs.stdenv.isDarwin;
   gpgSshSign =
     if isDarwin then
       "/Applications/1Password.app/Contents/MacOS/op-ssh-sign"
+    else if isWSL then
+      "/mnt/c/Users/groblerf/AppData/Local/1Password/previous/8/op-ssh-sign-wsl.exe"
     else
       "${lib.getExe' pkgs._1password-cli "op-ssh-sign"}";
 in
 {
   programs.git = {
     enable = true;
+    ignores = [
+      "*.DS_Store"
+      ".DS_Store"
+    ];
     userName = "Franco Grobler";
     userEmail = "franco@grobler.fyi";
     aliases = {
-      cleanup = "!git branch --merged | grep  -v '\\*\\|master\\|develop' | xargs -n 1 -r git branch -d";
+      cleanup = "!git branch --merged | grep  -v '\\*\\|main\\|develop' | xargs -n 1 -r git branch -d";
       prettylog = "log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(r) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative";
       root = "rev-parse --show-toplevel";
     };
@@ -29,6 +40,7 @@ in
       };
       core = {
         askPass = ""; # needs to be empty to use terminal for ask pass
+        sshCommand = if isWSL then "ssh.exe" else "ssh";
       };
       credential = {
         helper = "store"; # want to make this more secure
