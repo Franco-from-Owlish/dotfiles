@@ -11,7 +11,6 @@ return {
     opts = {
       arg = "leetcode",
       lang = "golang",
-      ---@type lc.highlights
       theme = {
         ["alt"] = {
           bg = "#000000",
@@ -20,7 +19,7 @@ return {
           fg = "#AAAAAA",
         },
       },
-      -- image_support = true,
+      image_support = true,
     },
   },
 }
