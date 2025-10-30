@@ -73,12 +73,12 @@
         user = userName;
       };
 
-      nixosConfigurations.x86_64-linux = mkSystem "x86_64-linux" rec {
+      nixosConfigurations.x86_64-linux = mkSystem "x86_64-linux" {
         system = "x86_64-linux";
         user = userName;
       };
 
-      nixosConfigurations.wsl = mkSystem "wsl" rec {
+      nixosConfigurations.wsl = mkSystem "wsl" {
         system = "x86_64-linux";
         user = userName;
         wsl = true;
