@@ -44,11 +44,13 @@
         (final: prev: rec {
           unstable = unstablePkgsFor prev.system;
           # Latest version of these
-          devenv = unstable.devenv;
-          gemini-cli = unstable.gemini-cli;
-          gh = unstable.gh;
-          nushell = unstable.nushell;
-          uv = unstable.uv;
+          inherit (unstable)
+            devenv
+            gemini-cli
+            gh
+            nushell
+            uv
+            ;
         })
       ];
 

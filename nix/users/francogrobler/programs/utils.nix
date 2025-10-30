@@ -12,30 +12,32 @@ let
       "~/.1password/agent.sock";
 in
 {
-  programs.nh = {
-    enable = true;
-    clean = {
+  programs = {
+    nh = {
       enable = true;
-      extraArgs = "--keep-since 7d --keep 2";
+      clean = {
+        enable = true;
+        extraArgs = "--keep-since 7d --keep 2";
+      };
+      flake = "$HOME/dotfiles/nix#${osConfig}.${systemName}";
     };
-    flake = "$HOME/dotfiles/nix#${osConfig}.${systemName}";
-  };
 
-  programs.ssh = {
-    enable = true;
-    matchBlocks = {
-      "*" = {
-        identityAgent = ''"${onePassPath}"'';
-      };
-      "Bamboo- Norm" = {
-        host = "192.168.1.100:8006";
-        user = "root";
-        port = 22;
-      };
-      "OpenWRT" = {
-        host = "192.168.1.1";
-        user = "root";
-        port = 22;
+    ssh = {
+      enable = true;
+      matchBlocks = {
+        "*" = {
+          identityAgent = ''"${onePassPath}"'';
+        };
+        "Bamboo- Norm" = {
+          host = "192.168.1.100:8006";
+          user = "root";
+          port = 22;
+        };
+        "OpenWRT" = {
+          host = "192.168.1.1";
+          user = "root";
+          port = 22;
+        };
       };
     };
   };

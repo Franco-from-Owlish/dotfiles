@@ -1,41 +1,43 @@
 {
-  programs.atuin = {
-    enable = true;
-    enableBashIntegration = true;
-    enableNushellIntegration = true;
-    enableZshIntegration = true;
-  };
+  programs = {
+    atuin = {
+      enable = true;
+      enableBashIntegration = true;
+      enableNushellIntegration = true;
+      enableZshIntegration = true;
+    };
 
-  programs.carapace = {
-    enable = true;
-    enableBashIntegration = true;
-    enableNushellIntegration = true;
-    enableZshIntegration = true;
-  };
+    carapace = {
+      enable = true;
+      enableBashIntegration = true;
+      enableNushellIntegration = true;
+      enableZshIntegration = true;
+    };
 
-  programs.direnv = {
-    enable = true;
-    enableBashIntegration = true;
-    enableNushellIntegration = true;
-    enableZshIntegration = true;
-    nix-direnv.enable = true;
-  };
+    direnv = {
+      enable = true;
+      enableBashIntegration = true;
+      enableNushellIntegration = true;
+      enableZshIntegration = true;
+      nix-direnv.enable = true;
+    };
 
-  programs.starship = {
-    enable = true;
-    enableBashIntegration = true;
-    enableNushellIntegration = true;
-    enableZshIntegration = true;
-  };
+    starship = {
+      enable = true;
+      enableBashIntegration = true;
+      enableNushellIntegration = true;
+      enableZshIntegration = true;
+    };
 
-  programs.uv = {
-    enable = true;
-  };
+    uv = {
+      enable = true;
+    };
 
-  programs.zoxide = {
-    enable = true;
-    enableBashIntegration = true;
-    enableNushellIntegration = true;
-    enableZshIntegration = true;
+    zoxide = {
+      enable = true;
+      enableBashIntegration = true;
+      enableNushellIntegration = true;
+      enableZshIntegration = true;
+    };
   };
 }
