@@ -44,6 +44,7 @@
         (final: prev: rec {
           unstable = unstablePkgsFor prev.system;
           # Latest version of these
+          devenv = unstable.devenv;
           gemini-cli = unstable.gemini-cli;
           gh = unstable.gh;
           nushell = unstable.nushell;
