@@ -120,6 +120,7 @@ in
       pkgs.kubectl
       pkgs.lazydocker
       pkgs.lazygit
+      pkgs.lua
       pkgs.luajitPackages.luarocks
       pkgs.lolcat
       pkgs.neovim
