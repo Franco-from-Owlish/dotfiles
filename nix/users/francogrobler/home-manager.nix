@@ -50,7 +50,8 @@ let
       }
     else if isDarwin then
       {
-        drawio = "$HOME/Applications/draw.io.app/Contents/MacOS/draw.io";
+        # TODO: This breaks nushell - needs to use env.HOME
+        # drawio = "$HOME/Applications/draw.io.app/Contents/MacOS/draw.io";
       }
     else
       { }
