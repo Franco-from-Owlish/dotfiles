@@ -3,7 +3,7 @@
   programs = {
     bash = {
       enable = true;
-      shellOptions = [ ];
+      shellOptions = [ "vi" ];
       historyControl = [
         "ignoredups"
         "ignorespace"
@@ -13,6 +13,9 @@
 
     nushell = {
       enable = true;
+      settings = {
+        edit_mode = "vi";
+      };
       inherit shellAliases;
     };
 
