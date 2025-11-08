@@ -127,6 +127,7 @@ in
     pkgs.ripgrep
     pkgs.rustup
     pkgs.sentry-cli
+    pkgs.statix
     pkgs.stow
     pkgs.sshs
     pkgs.thefuck
