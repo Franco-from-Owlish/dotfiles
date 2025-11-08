@@ -1,6 +1,6 @@
 { lib, pkgs, ... }:
 let
-  isDarwin = pkgs.stdenv.isDarwin;
+  inherit (pkgs.stdenv) isDarwin;
   gpgSshSign =
     if isDarwin then
       "/Applications/1Password.app/Contents/MacOS/op-ssh-sign"
