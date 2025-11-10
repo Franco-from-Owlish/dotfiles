@@ -112,6 +112,7 @@ in
       pkgs.fzf
       pkgs.gcc
       pkgs.gh
+      pkgs.github-copilot-cli
       pkgs.glow
       pkgs.htop
       pkgs.jaq

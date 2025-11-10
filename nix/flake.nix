@@ -48,6 +48,7 @@
             devenv
             gemini-cli
             gh
+            github-copilot-cli
             nushell
             uv
             ;
