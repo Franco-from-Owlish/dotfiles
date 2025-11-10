@@ -51,13 +51,15 @@ systemFunc rec {
     userOSConfig
     home-manager.home-manager
     {
-      home-manager.backupFileExtension = "backup";
-      home-manager.useGlobalPkgs = true;
-      home-manager.useUserPackages = true;
-      home-manager.users.${user} = import userHMConfig {
-        systemName = name;
-        isWSL = isWSL;
-        inputs = inputs;
+      home-manager = {
+        backupFileExtension = "backup";
+        useGlobalPkgs = true;
+        useUserPackages = true;
+        users.${user} = import userHMConfig {
+          systemName = name;
+          inherit isWSL;
+          inherit inputs;
+        };
       };
     }
 
@@ -68,8 +70,8 @@ systemFunc rec {
         currentSystem = system;
         currentSystemName = name;
         currentSystemUser = user;
-        isWSL = isWSL;
-        inputs = inputs;
+        inherit isWSL;
+        inherit inputs;
       };
     }
   ];
