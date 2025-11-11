@@ -24,39 +24,6 @@ let
     else
       "homeConfigurations";
 
-  shellAliases = {
-    cl = "clear";
-    ".." = "cd ..";
-    "..." = "cd ../..";
-    justg = "just --global-justfile";
-    l = "eza -l --icons --git -a";
-    lt = "eza --tree --level=2 --long --icons --git";
-    ltree = "eza --tree --level=2  --icons --git";
-
-    "gemini-cli" = "GEMINI_API_KEY=$(op read $GEMINI_API_KEY) gemini";
-  }
-  // (
-    if isWSL then
-      {
-        pbcopy = "win32yank.exe -i";
-        pbpaste = "win32yank.exe -o";
-        ssh = "ssh.exe";
-        ssh-add = "ssh-add.exe";
-      }
-    else if isLinux then
-      {
-        pbcopy = "xclip";
-        pbpaste = "xclip -o";
-      }
-    else if isDarwin then
-      {
-        # TODO: This breaks nushell - needs to use env.HOME
-        # drawio = "$HOME/Applications/draw.io.app/Contents/MacOS/draw.io";
-      }
-    else
-      { }
-  );
-
   # For our MANPAGER env var
   # https://github.com/sharkdp/bat/issues/1145
   # manpager = (
@@ -78,7 +45,7 @@ let
     (import "${currentDir}/programs/clis.nix")
     (import "${currentDir}/programs/i3.nix" { inherit isLinux isWSL; })
     (import "${currentDir}/programs/languages.nix" { inherit pkgs; })
-    (import "${currentDir}/programs/shells.nix" { inherit shellAliases; })
+    (import "${currentDir}/programs/shells.nix" { inherit isWSL; })
     (import "${currentDir}/programs/utils.nix" { inherit osConfig systemName isDarwin; })
     (import "${currentDir}/programs/vsc.nix" { inherit lib pkgs isWSL; })
   ];
