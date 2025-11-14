@@ -34,7 +34,6 @@ return {
         "prettier", -- prettier formatter
         "stylua", -- lua formatter
         "ruff", -- python formatter
-        "mypy",
         "eslint_d",
       },
     },
@@ -48,7 +47,7 @@ return {
       servers = { eslint = {} },
       setup = {
         eslint = function()
-          require("lazyvim.util").lsp.on_attach(function(client)
+          require("snacks.util").lsp.on(function(_, client)
             if client.name == "eslint" then
               client.server_capabilities.documentFormattingProvider = true
             elseif client.name == "tsserver" then
